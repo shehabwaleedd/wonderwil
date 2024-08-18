@@ -1,0 +1,19 @@
+
+
+.container {
+    display: flex;
+    overflow: hidden;
+
+}
+
+.getChars {
+    display: inline-block;
+    overflow: hidden;
+    will-change: transform;
+}
+
+.letter {
+    display: inline-block;
+overflow: hidden;
+
+}
