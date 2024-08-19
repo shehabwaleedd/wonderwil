@@ -17,9 +17,9 @@ const Navbar: React.FC = () => {
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
     const menuItems = [
-        { name: 'About', subItems: ['Our Story', 'Team', 'Vision'] },
+        { name: 'About', subItems: [] },
         { name: 'Expertise', subItems: ['Brand Strategy', 'Art Direction', 'Digital Design & Development', 'Photography', 'Film'] },
-        { name: 'Wonder', subItems: ['Projects', 'Insights', 'Awards'] }
+        { name: 'Wonder', subItems: [] }
     ];
 
     useEffect(() => {
@@ -42,8 +42,7 @@ const Navbar: React.FC = () => {
             gsap.to(overlayRef.current, {
                 duration: 0.5,
                 opacity: isOpen ? 1 : 0,
-                visibility: isOpen ? 'visible' : 'hidden',
-                ease: 'power2.inOut'
+                ease: 'power3.inOut'
             });
             gsap.to(menuRef.current, {
                 duration: 0.5,

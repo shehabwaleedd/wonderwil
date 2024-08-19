@@ -1,12 +1,10 @@
 import React from 'react';
-
 import './globals.css';
-import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
 import localFont from 'next/font/local';
 import Background from '@/components/background';
 import Navbar from '@/components/navbar';
-const SmoothScrolling = dynamic(() => import('@/animations/SmoothScrolling'), { ssr: false });
+import SmoothScroller from '@/animations/SmoothScrolling';
 
 const youth = localFont({
   src: '../../public/fonts/Futura.woff2',
@@ -79,7 +77,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Navbar />
         <Background />
-        <SmoothScrolling />
+        <SmoothScroller />
         {children}
       </body>
     </html>
