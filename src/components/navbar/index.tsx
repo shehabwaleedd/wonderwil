@@ -3,11 +3,15 @@ import React, { useState, useRef, useEffect } from 'react';
 import { gsap } from 'gsap';
 import Link from 'next/link';
 import styles from "./style.module.scss";
+import Image from 'next/image';
+import { useRouter, usePathname } from 'next/navigation';
+
 
 const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [activeTab, setActiveTab] = useState<string | null>(null);
     const [isSubMenuVisible, setIsSubMenuVisible] = useState(false);
+    const [hoverImage, setHoverImage] = useState<string | null>(null);
     const overlayRef = useRef<HTMLDivElement>(null);
     const menuRef = useRef<HTMLDivElement>(null);
     const menuIconRef = useRef<HTMLButtonElement>(null);
@@ -15,12 +19,24 @@ const Navbar: React.FC = () => {
     const dash2Ref = useRef<HTMLSpanElement>(null);
     const subMenuRef = useRef<HTMLUListElement>(null);
     const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const router = useRouter();
+    const pathname = usePathname();
 
     const menuItems = [
-        { name: 'About', subItems: [] },
+        { name: 'About', subItems: [], image: '/aboutPage.jpg' },
         { name: 'Expertise', subItems: ['Brand Strategy', 'Art Direction', 'Digital Design & Development', 'Photography', 'Film'] },
-        { name: 'Wonder', subItems: [] }
+        { name: 'Wonder', subItems: [], image: '/wonderPage.jpg' }
     ];
+
+    useEffect(() => {
+        setIsOpen(false);
+    }, [pathname]);
+
+
+    const isCurrentPage = (itemName: string) => {
+        return pathname === `/${itemName.toLowerCase()}`;
+    };
+
 
     useEffect(() => {
         if (dash1Ref.current && dash2Ref.current) {
@@ -73,6 +89,10 @@ const Navbar: React.FC = () => {
         }
         setActiveTab(item);
         setIsSubMenuVisible(true);
+        const menuItem = menuItems.find(i => i.name === item);
+        if (menuItem && menuItem.image) {
+            setHoverImage(menuItem.image);
+        }
     };
 
     const handleMouseLeave = () => {
@@ -82,7 +102,8 @@ const Navbar: React.FC = () => {
         timeoutRef.current = setTimeout(() => {
             setIsSubMenuVisible(false);
             setActiveTab(null);
-        }, 1000); // Adjust this value to give more or less time
+            setHoverImage(null);
+        }, 1000);
     };
 
     const handleSubMenuEnter = () => {
@@ -120,20 +141,19 @@ const Navbar: React.FC = () => {
                         {menuItems.map((item) => (
                             <li
                                 key={item.name}
-                                className={styles.menuItem}
+                                className={`${styles.menuItem} ${isCurrentPage(item.name) ? styles.disabled : ''}`}
                                 onMouseEnter={() => handleMouseEnter(item.name)}
                                 onMouseLeave={handleMouseLeave}
                             >
-                                <Link href={`/${item.name.toLowerCase()}`}>{item.name}</Link>
+                                {isCurrentPage(item.name) ? (
+                                    <span>{item.name}</span>
+                                ) : (
+                                    <Link href={`/${item.name.toLowerCase()}`}>{item.name}</Link>
+                                )}
                             </li>
                         ))}
                     </ul>
-                    <ul 
-                        ref={subMenuRef} 
-                        className={styles.subItems}
-                        onMouseEnter={handleSubMenuEnter}
-                        onMouseLeave={handleSubMenuLeave}
-                    >
+                    <ul ref={subMenuRef} className={styles.subItems} onMouseEnter={handleSubMenuEnter} onMouseLeave={handleSubMenuLeave}>
                         {activeTab && menuItems.find(item => item.name === activeTab)?.subItems.map((subItem) => (
                             <li key={subItem}>
                                 <Link href={`/${activeTab.toLowerCase()}/${subItem.toLowerCase().replace(/\s+/g, '-')}`}>
@@ -143,6 +163,16 @@ const Navbar: React.FC = () => {
                         ))}
                     </ul>
                 </nav>
+                {hoverImage && (
+                    <div className={styles.hoverImageContainer}>
+                        <Image
+                            src={hoverImage}
+                            alt={`${activeTab} image`}
+                            layout="fill"
+                            objectFit="cover"
+                        />
+                    </div>
+                )}
             </div>
         </>
     );
