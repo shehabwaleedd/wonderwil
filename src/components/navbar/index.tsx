@@ -12,15 +12,14 @@ const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [activeTab, setActiveTab] = useState<string | null>(null);
     const [isSubMenuVisible, setIsSubMenuVisible] = useState(false);
-    const [hoverImage, setHoverImage] = useState<string | null>(null);
     const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
     const pathname = usePathname();
     const { hasAccess } = useAccess();
 
     const menuItems = [
-        { name: 'About', subItems: [], image: '/aboutPage.jpg' },
+        { name: 'About', subItems: [] },
         { name: 'Expertise', subItems: ['Brand Strategy', 'Art Direction', 'Digital Design & Development', 'Photography', 'Film'] },
-        { name: 'Wonder', subItems: [], image: '/wonderPage.jpg' }
+        { name: 'Wonder', subItems: []}
     ];
 
     useEffect(() => {
@@ -41,10 +40,6 @@ const Navbar: React.FC = () => {
         }
         setActiveTab(item);
         setIsSubMenuVisible(true);
-        const menuItem = menuItems.find(i => i.name === item);
-        if (menuItem && menuItem.image) {
-            setHoverImage(menuItem.image);
-        }
     };
 
     const handleMouseLeave = () => {
@@ -54,7 +49,6 @@ const Navbar: React.FC = () => {
         timeoutRef.current = setTimeout(() => {
             setIsSubMenuVisible(false);
             setActiveTab(null);
-            setHoverImage(null);
         }, 1000);
     };
 
@@ -162,25 +156,6 @@ const Navbar: React.FC = () => {
                         )}
                     </AnimatePresence>
                 </motion.nav>
-                <AnimatePresence>
-                    {hoverImage && (
-                        <motion.div
-                            key={hoverImage}
-                            className={styles.hoverImageContainer}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.3 }}
-                        >
-                            <Image
-                                src={hoverImage}
-                                alt={`${activeTab} image`}
-                                layout="fill"
-                                objectFit="cover"
-                            />
-                        </motion.div>
-                    )}
-                </AnimatePresence>
             </motion.div>
         </>
     );
