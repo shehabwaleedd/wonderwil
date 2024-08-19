@@ -6,7 +6,9 @@ const Background = () => {
 
     return (
         <div className={styles.fixed}>
-            <video autoPlay loop playsInline muted>
+            <video autoPlay loop playsInline muted
+                poster='/cover.png'
+            >
                 <source src="/WonderIntro.mp4" type="video/mp4" />
             </video>
         </div>
