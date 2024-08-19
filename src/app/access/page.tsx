@@ -6,7 +6,7 @@ import styles from "./page.module.scss"
 
 const AccessPage: React.FC = () => {
     const [code, setCode] = useState('');
-    const { checkCode } = useAccess();
+    const { checkCode, hasAccess } = useAccess();
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -17,9 +17,14 @@ const AccessPage: React.FC = () => {
         }
     };
 
+    if (hasAccess) {
+        return null;
+    }
+
+
     return (
         <div className={styles.access}>
-            <Image src="/public/assets/intro.png" alt="Access" width={800} height={600} />
+            <Image src="/intro.png" alt="Wonderwil" width={500} height={500} />
             <form onSubmit={handleSubmit}>
                 <input
                     type="text"
