@@ -1,24 +1,17 @@
 'use client'
-import React, { useState, useRef, useEffect } from 'react';
-import { gsap } from 'gsap';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
-import styles from "./style.module.scss";
 import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
-
+import { motion, AnimatePresence } from 'framer-motion';
+import styles from "./style.module.scss";
 
 const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
     const [activeTab, setActiveTab] = useState<string | null>(null);
     const [isSubMenuVisible, setIsSubMenuVisible] = useState(false);
     const [hoverImage, setHoverImage] = useState<string | null>(null);
-    const overlayRef = useRef<HTMLDivElement>(null);
-    const menuRef = useRef<HTMLDivElement>(null);
-    const menuIconRef = useRef<HTMLButtonElement>(null);
-    const dash1Ref = useRef<HTMLSpanElement>(null);
-    const dash2Ref = useRef<HTMLSpanElement>(null);
-    const subMenuRef = useRef<HTMLUListElement>(null);
-    const timeoutRef = useRef<NodeJS.Timeout | null>(null);
+    const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
     const router = useRouter();
     const pathname = usePathname();
 
@@ -32,52 +25,9 @@ const Navbar: React.FC = () => {
         setIsOpen(false);
     }, [pathname]);
 
-
     const isCurrentPage = (itemName: string) => {
         return pathname === `/${itemName.toLowerCase()}`;
     };
-
-
-    useEffect(() => {
-        if (dash1Ref.current && dash2Ref.current) {
-            gsap.to(dash1Ref.current, {
-                duration: 0.3,
-                rotate: isOpen ? 45 : 0,
-                y: isOpen ? 5 : 0,
-                ease: 'power2.inOut'
-            });
-            gsap.to(dash2Ref.current, {
-                duration: 0.3,
-                rotate: isOpen ? -45 : 0,
-                y: isOpen ? -5 : 0,
-                ease: 'power2.inOut'
-            });
-        }
-
-        if (overlayRef.current && menuRef.current) {
-            gsap.to(overlayRef.current, {
-                duration: 0.5,
-                opacity: isOpen ? 1 : 0,
-                ease: 'power3.inOut'
-            });
-            gsap.to(menuRef.current, {
-                duration: 0.5,
-                opacity: isOpen ? 1 : 0,
-                ease: 'power2.inOut'
-            });
-        }
-    }, [isOpen]);
-
-    useEffect(() => {
-        if (subMenuRef.current) {
-            gsap.to(subMenuRef.current, {
-                duration: 0.3,
-                opacity: isSubMenuVisible ? 1 : 0,
-                visibility: isSubMenuVisible ? 'visible' : 'hidden',
-                ease: 'power2.inOut'
-            });
-        }
-    }, [isSubMenuVisible]);
 
     const toggleMenu = () => {
         setIsOpen(!isOpen);
@@ -121,10 +71,23 @@ const Navbar: React.FC = () => {
             <header className={styles.navbar}>
                 <nav className={styles.container}>
                     <div className={styles.left}>
-                        <button onClick={toggleMenu} className={styles.menuIcon} ref={menuIconRef}>
-                            <span ref={dash1Ref} className={styles.menuDash}></span>
-                            <span ref={dash2Ref} className={styles.menuDash}></span>
-                        </button>
+                        <motion.button
+                            onClick={toggleMenu}
+                            className={styles.menuIcon}
+                            animate={{ rotate: isOpen ? 90 : 0 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <motion.span
+                                className={styles.menuDash}
+                                animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 5 : 0 }}
+                                transition={{ duration: 0.3 }}
+                            />
+                            <motion.span
+                                className={styles.menuDash}
+                                animate={{ rotate: isOpen ? -45 : 0, y: isOpen ? -5 : 0 }}
+                                transition={{ duration: 0.3 }}
+                            />
+                        </motion.button>
                     </div>
                     <div className={styles.center}>
                         <Link href="/">
@@ -135,45 +98,82 @@ const Navbar: React.FC = () => {
                 </nav>
             </header>
 
-            <div ref={overlayRef} className={`${styles.overlay} ${isOpen ? styles.active : ''}`}>
-                <nav ref={menuRef} className={styles.menu}>
+            <motion.div
+                className={`${styles.overlay} ${isOpen ? styles.active : ''}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: isOpen ? 1 : 0 }}
+                transition={{ duration: 0.5 }}
+            >
+                <motion.nav
+                    className={styles.menu}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: isOpen ? 1 : 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                >
                     <ul className={styles.menuItems}>
                         {menuItems.map((item) => (
-                            <li
+                            <motion.li
                                 key={item.name}
                                 className={`${styles.menuItem} ${isCurrentPage(item.name) ? styles.disabled : ''}`}
                                 onMouseEnter={() => handleMouseEnter(item.name)}
                                 onMouseLeave={handleMouseLeave}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
                             >
                                 {isCurrentPage(item.name) ? (
                                     <span>{item.name}</span>
                                 ) : (
                                     <Link href={`/${item.name.toLowerCase()}`}>{item.name}</Link>
                                 )}
-                            </li>
+                            </motion.li>
                         ))}
                     </ul>
-                    <ul ref={subMenuRef} className={styles.subItems} onMouseEnter={handleSubMenuEnter} onMouseLeave={handleSubMenuLeave}>
-                        {activeTab && menuItems.find(item => item.name === activeTab)?.subItems.map((subItem) => (
-                            <li key={subItem}>
-                                <Link href={`/${activeTab.toLowerCase()}/${subItem.toLowerCase().replace(/\s+/g, '-')}`}>
-                                    {subItem}
-                                </Link>
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
-                {hoverImage && (
-                    <div className={styles.hoverImageContainer}>
-                        <Image
-                            src={hoverImage}
-                            alt={`${activeTab} image`}
-                            layout="fill"
-                            objectFit="cover"
-                        />
-                    </div>
-                )}
-            </div>
+                    <AnimatePresence>
+                        {isSubMenuVisible && activeTab && (
+                            <motion.ul
+                                className={styles.subItems}
+                                initial={{ opacity: 0}}
+                                animate={{ opacity: 1}}
+                                exit={{ opacity: 0 }}
+                                transition={{ duration: 0.3 }}
+                                onMouseEnter={handleSubMenuEnter}
+                                onMouseLeave={handleSubMenuLeave}
+                            >
+                                {menuItems.find(item => item.name === activeTab)?.subItems.map((subItem) => (
+                                    <motion.li
+                                        key={subItem}
+                                        whileHover={{ scale: 1.025 }}
+                                        whileTap={{ scale: 0.95 }}
+                                    >
+                                        <Link href={`/${activeTab.toLowerCase()}/${subItem.toLowerCase().replace(/\s+/g, '-')}`}>
+                                            {subItem}
+                                        </Link>
+                                    </motion.li>
+                                ))}
+                            </motion.ul>
+                        )}
+                    </AnimatePresence>
+                </motion.nav>
+                <AnimatePresence>
+                    {hoverImage && (
+                        <motion.div
+                            key={hoverImage}
+                            className={styles.hoverImageContainer}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <Image
+                                src={hoverImage}
+                                alt={`${activeTab} image`}
+                                layout="fill"
+                                objectFit="cover"
+                            />
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </motion.div>
         </>
     );
 };
