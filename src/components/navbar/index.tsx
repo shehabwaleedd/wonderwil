@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { useRouter, usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from "./style.module.scss";
+import { useAccess } from '@/context/AccessContext';
+
 
 const Navbar: React.FC = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -12,8 +14,8 @@ const Navbar: React.FC = () => {
     const [isSubMenuVisible, setIsSubMenuVisible] = useState(false);
     const [hoverImage, setHoverImage] = useState<string | null>(null);
     const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
-    const router = useRouter();
     const pathname = usePathname();
+    const { hasAccess } = useAccess();
 
     const menuItems = [
         { name: 'About', subItems: [], image: '/aboutPage.jpg' },
@@ -65,6 +67,12 @@ const Navbar: React.FC = () => {
     const handleSubMenuLeave = () => {
         handleMouseLeave();
     };
+
+
+
+    if (!hasAccess) {
+        return null;
+    }
 
     return (
         <>
@@ -132,8 +140,8 @@ const Navbar: React.FC = () => {
                         {isSubMenuVisible && activeTab && (
                             <motion.ul
                                 className={styles.subItems}
-                                initial={{ opacity: 0}}
-                                animate={{ opacity: 1}}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.3 }}
                                 onMouseEnter={handleSubMenuEnter}

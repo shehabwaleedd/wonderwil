@@ -5,6 +5,8 @@ import localFont from 'next/font/local';
 import Background from '@/components/background';
 import Navbar from '@/components/navbar';
 import SmoothScroller from '@/animations/SmoothScrolling';
+import { AccessProvider } from '@/context/AccessContext';
+import { Toaster } from 'sonner';
 
 const youth = localFont({
   src: '../../public/fonts/Futura.woff2',
@@ -28,7 +30,7 @@ export const metadata: Metadata = {
 
   metadataBase: new URL('https://wonderwil.com'),
   keywords: [
-    'Brand Strategy', 'Branding', 'Content Creation', 'Production', 'Creative Studio', 
+    'Brand Strategy', 'Branding', 'Content Creation', 'Production', 'Creative Studio',
     'High-Profile Projects', 'Public Spaces', 'Social Good', 'Community Advocacy',
     'Wonderwil', 'Design', 'Creative Development', 'Marketing', 'Community Development',
     'Public Space Advocacy', 'Community Engagement', 'Social Impact', 'Brand Identity',
@@ -75,10 +77,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en" suppressHydrationWarning className={`${youth.variable} ${satoshiVariable.variable}`}>
       <body>
-        <Navbar />
-        <Background />
-        <SmoothScroller />
-        {children}
+        <AccessProvider>
+          <Navbar />
+          <Toaster />
+          <Background />
+          <SmoothScroller />
+          {children}
+        </AccessProvider>
       </body>
     </html>
   );
