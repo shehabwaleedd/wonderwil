@@ -4,7 +4,6 @@ import './globals.css';
 import dynamic from 'next/dynamic';
 import { Metadata } from 'next';
 import localFont from 'next/font/local';
-import Script from 'next/script';
 import Background from '@/components/background';
 import Navbar from '@/components/navbar';
 const SmoothScrolling = dynamic(() => import('@/animations/SmoothScrolling'), { ssr: false });
@@ -25,40 +24,37 @@ const satoshiVariable = localFont({
   preload: true,
 })
 
-
-
 export const metadata: Metadata = {
-  title: 'Cairo Studio | Premium Web Development, Branding & Graphic Design in Egypt',
-  description: 'Cairo Studio: Egypt\'s leading digital studio for web development, UI/UX, graphic design, and branding. Transform your digital presence.',
+  title: 'Wonderwil | Creative Studio for Branding, Content, and Community Advocacy',
+  description: 'Wonderwil: A premier creative studio specializing in brand strategy, high-quality content, and production for top-tier global projects. Committed to advancing community-powered public spaces for social good.',
 
-  metadataBase: new URL('https://cairo-studio.com'),
+  metadataBase: new URL('https://wonderwil.com'),
   keywords: [
-    'UI/UX Design', 'Web Development', 'Build Website', 'انشاء موقع الكتروني', 'Responsive Design',
-    'Brand Identity', 'Digital Design', 'Graphic Design', 'Illustrations', 'E-commerce',
-    'Cairo Studio', 'Cairo', 'Egypt', 'تصميم واجهة المستخدم', 'تطوير الويب',
-    'تصميم العلامة التجارية', 'التصميم الرقمي', 'التصميم الجرافيكي', 'الرسوم التوضيحية',
-    'التجارة الإلكترونية', 'استوديو القاهرة', 'مصر', 'Next.js 14', 'GSAP', 'Framer Motion',
-    'SCSS Modules', 'JavaScript', 'HTML', 'CSS', 'Frontend Development', 'تحسين تجربة المستخدم'
+    'Brand Strategy', 'Branding', 'Content Creation', 'Production', 'Creative Studio', 
+    'High-Profile Projects', 'Public Spaces', 'Social Good', 'Community Advocacy',
+    'Wonderwil', 'Design', 'Creative Development', 'Marketing', 'Community Development',
+    'Public Space Advocacy', 'Community Engagement', 'Social Impact', 'Brand Identity',
+    'Global Projects', 'Digital Content', 'Creative Production'
   ],
   openGraph: {
     type: 'website',
-    url: 'https://cairo-studio.com',
-    title: 'Cairo Studio | Premium Web Development, Branding & Graphic Design in Egypt',
-    description: 'Cairo Studio: Egypt\'s leading digital studio for web development, UI/UX, graphic design, and branding. Transform your digital presence.',
+    url: 'https://wonderwil.com',
+    title: 'Wonderwil | Creative Studio for Branding, Content, and Community Advocacy',
+    description: 'Wonderwil: A premier creative studio specializing in brand strategy, high-quality content, and production for top-tier global projects. Committed to advancing community-powered public spaces for social good.',
     images: {
-      url: 'https://res.cloudinary.com/ds20vy7zo/image/upload/v1718735293/CDS_OG_Image_2_qdahop.webp',
+      url: 'https://example.com/path-to-wonderwil-og-image.jpg', // Replace with actual image URL
       width: 1200,
       height: 630,
-      alt: 'Cairo Studio - Leading Digital Agency in Egypt'
+      alt: 'Wonderwil - Creative Studio for Global Projects and Social Good'
     },
     locale: 'en_US',
   },
   twitter: {
     card: 'summary_large_image',
-    site: '@CairoStudioo',
-    title: 'Cairo Studio | Premium Web Development, Branding & Graphic Design in Egypt',
-    description: 'Transform your digital presence with Cairo Studio, Egypt\'s leading agency for web development, UI/UX, graphic design, and branding.',
-    images: ['https://res.cloudinary.com/ds20vy7zo/image/upload/v1718735293/CDS_OG_Image_2_qdahop.webp'],
+    site: '@Wonderwil',
+    title: 'Wonderwil | Creative Studio for Branding, Content, and Community Advocacy',
+    description: 'Wonderwil: Specializing in brand strategy, content creation, and advocacy for community-powered public spaces.',
+    images: ['https://example.com/path-to-wonderwil-twitter-image.jpg'], // Replace with actual image URL
   },
 
   robots: {
@@ -73,7 +69,7 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://cairo-studio.com',
+    canonical: 'https://wonderwil.com',
   }
 };
 

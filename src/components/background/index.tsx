@@ -3,7 +3,7 @@ import styles from "./style.module.scss"
 const Background = () => {
     return (
         <div className={styles.fixed}>
-            <video autoPlay muted loop>
+            <video autoPlay loop playsInline muted>
                 <source src="/WonderIntro.mp4" type="video/mp4" />
             </video>
         </div>
