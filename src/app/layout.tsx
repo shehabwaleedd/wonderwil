@@ -2,11 +2,12 @@ import React from 'react';
 import './globals.css';
 import { Metadata } from 'next';
 import localFont from 'next/font/local';
-import Background from '@/components/background';
 import Navbar from '@/components/navbar';
 import SmoothScroller from '@/animations/SmoothScrolling';
 import { AccessProvider } from '@/context/AccessContext';
 import { Toaster } from 'sonner';
+import QuoteOverlay from "@/components/quoteOverlay";
+
 
 const youth = localFont({
   src: '../../public/fonts/Futura.woff2',
@@ -80,7 +81,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AccessProvider>
           <Navbar />
           <Toaster />
-          <Background />
           <SmoothScroller />
           {children}
         </AccessProvider>

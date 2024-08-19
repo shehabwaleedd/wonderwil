@@ -11,15 +11,15 @@ const AccessPage: React.FC = () => {
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (checkCode(code)) {
-            setTimeout(() => {
-                window.location.href = '/';
-            }, 1500);
+            window.location.href = '/';
         }
     };
+
 
     if (hasAccess) {
         return null;
     }
+
 
 
     return (
