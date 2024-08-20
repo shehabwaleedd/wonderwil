@@ -9,7 +9,6 @@
     z-index: 99;
     .upper {
         height: fit-content;
-        background-color: #2142AB;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -53,7 +52,6 @@
         align-items: center;
         justify-content: flex-start;
         width: 100%;
-        background-color: #63B7B7;
         position: relative;
         min-height: 150vh;
         p {
@@ -109,9 +107,9 @@
 .mainImg {
     width: 100%;
     height: 100vh;
-    img {
+    video {
         width: 100%;
-        height: 100%;
+        height: 100vh;
         object-fit: cover;
     }
 }

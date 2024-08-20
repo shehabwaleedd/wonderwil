@@ -6,8 +6,7 @@ import Navbar from '@/components/navbar';
 import SmoothScroller from '@/animations/SmoothScrolling';
 import { AccessProvider } from '@/context/AccessContext';
 import { Toaster } from 'sonner';
-import QuoteOverlay from "@/components/quoteOverlay";
-
+import Background from "@/components/background";
 
 const youth = localFont({
   src: '../../public/fonts/Futura.woff2',
@@ -81,6 +80,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <AccessProvider>
           <Navbar />
           <Toaster />
+          <Background />
           <SmoothScroller />
           {children}
         </AccessProvider>

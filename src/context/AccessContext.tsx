@@ -2,21 +2,28 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { toast } from 'sonner';
+import { usePathname } from 'next/navigation';
 
 interface AccessContextType {
     hasAccess: boolean;
+    navOpen: boolean;
+    setNavOpen: any;
     checkCode: (code: string) => boolean;
 }
 
 const AccessContext = createContext<AccessContextType | undefined>(undefined);
 
 export const AccessProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const [hasAccess, setHasAccess] = useState(false);
+    const [hasAccess, setHasAccess] = useState<boolean>(false);
+    const [navOpen, setNavOpen] = useState<boolean>(false);
+    const pathname = usePathname();
+
 
     useEffect(() => {
         const accessToken = Cookies.get('access_token');
         setHasAccess(!!accessToken);
     }, []);
+
 
     const checkCode = (code: string) => {
         if (code === 'wonderwilAccessCode^@#$AS@!as1o0ocax') {
@@ -30,7 +37,7 @@ export const AccessProvider: React.FC<{ children: React.ReactNode }> = ({ childr
     };
 
     return (
-        <AccessContext.Provider value={{ hasAccess, checkCode }}>
+        <AccessContext.Provider value={{ hasAccess, checkCode, navOpen, setNavOpen }}>
             {children}
         </AccessContext.Provider>
     );

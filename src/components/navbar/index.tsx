@@ -1,66 +1,38 @@
 'use client'
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
-import Image from 'next/image';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import styles from "./style.module.scss";
 import { useAccess } from '@/context/AccessContext';
 
-
 const Navbar: React.FC = () => {
-    const [isOpen, setIsOpen] = useState(false);
-    const [activeTab, setActiveTab] = useState<string | null>(null);
-    const [isSubMenuVisible, setIsSubMenuVisible] = useState(false);
-    const timeoutRef = React.useRef<NodeJS.Timeout | null>(null);
-    const pathname = usePathname();
-    const { hasAccess } = useAccess();
 
-    const menuItems = [
-        { name: 'About', subItems: [] },
-        { name: 'Expertise', subItems: ['Brand Strategy', 'Art Direction', 'Digital Design & Development', 'Photography', 'Film'] },
-        { name: 'Wonder', subItems: []}
-    ];
+    const pathname = usePathname();
+    const { hasAccess, navOpen, setNavOpen } = useAccess();
+    const prevPathRef = useRef(pathname);
+
+    const menuItems = ['About', 'Expertise', 'Wonder'];
 
     useEffect(() => {
-        setIsOpen(false);
-    }, [pathname]);
+        // Check if the pathname has changed
+        if (pathname !== prevPathRef.current) {
+            prevPathRef.current = pathname;
+            const timer = setTimeout(() => {
+                setNavOpen(false);
+            }, 1000);
+            return () => clearTimeout(timer);
+        }
+    }, [pathname, setNavOpen]);
 
     const isCurrentPage = (itemName: string) => {
         return pathname === `/${itemName.toLowerCase()}`;
     };
 
     const toggleMenu = () => {
-        setIsOpen(!isOpen);
+        setNavOpen(!navOpen);
     };
 
-    const handleMouseEnter = (item: string) => {
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
-        }
-        setActiveTab(item);
-        setIsSubMenuVisible(true);
-    };
-
-    const handleMouseLeave = () => {
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
-        }
-        timeoutRef.current = setTimeout(() => {
-            setIsSubMenuVisible(false);
-            setActiveTab(null);
-        }, 1000);
-    };
-
-    const handleSubMenuEnter = () => {
-        if (timeoutRef.current) {
-            clearTimeout(timeoutRef.current);
-        }
-    };
-
-    const handleSubMenuLeave = () => {
-        handleMouseLeave();
-    };
 
 
 
@@ -76,17 +48,17 @@ const Navbar: React.FC = () => {
                         <motion.button
                             onClick={toggleMenu}
                             className={styles.menuIcon}
-                            animate={{ rotate: isOpen ? 90 : 0 }}
+                            animate={{ rotate: navOpen ? 90 : 0 }}
                             transition={{ duration: 0.3 }}
                         >
                             <motion.span
                                 className={styles.menuDash}
-                                animate={{ rotate: isOpen ? 45 : 0, y: isOpen ? 5 : 0 }}
+                                animate={{ rotate: navOpen ? 45 : 0, y: navOpen ? 5 : 0 }}
                                 transition={{ duration: 0.3 }}
                             />
                             <motion.span
                                 className={styles.menuDash}
-                                animate={{ rotate: isOpen ? -45 : 0, y: isOpen ? -5 : 0 }}
+                                animate={{ rotate: navOpen ? -45 : 0, y: navOpen ? -5 : 0 }}
                                 transition={{ duration: 0.3 }}
                             />
                         </motion.button>
@@ -100,63 +72,31 @@ const Navbar: React.FC = () => {
                 </nav>
             </header>
 
+
+
             <motion.div
-                className={`${styles.overlay} ${isOpen ? styles.active : ''}`}
+                className={`${styles.overlay} ${navOpen ? styles.active : ''}`}
                 initial={{ opacity: 0 }}
-                animate={{ opacity: isOpen ? 1 : 0 }}
-                transition={{ duration: 0.5 }}
-            >
-                <motion.nav
+                animate={{ opacity: navOpen ? 1 : 0 }}
+                exit={{ opacity: 0, transition: { duration: 0.5, delay: 1.5 } }}
+                transition={{ duration: 0.5 }}>
+                <motion.div
                     className={styles.menu}
                     initial={{ opacity: 0 }}
-                    animate={{ opacity: isOpen ? 1 : 0 }}
+                    animate={{ opacity: navOpen ? 1 : 0 }}
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
                     <ul className={styles.menuItems}>
                         {menuItems.map((item) => (
-                            <motion.li
-                                key={item.name}
-                                className={`${styles.menuItem} ${isCurrentPage(item.name) ? styles.disabled : ''}`}
-                                onMouseEnter={() => handleMouseEnter(item.name)}
-                                onMouseLeave={handleMouseLeave}
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                {isCurrentPage(item.name) ? (
-                                    <span>{item.name}</span>
-                                ) : (
-                                    <Link href={`/${item.name.toLowerCase()}`}>{item.name}</Link>
-                                )}
+                            <motion.li key={item} className={`${styles.menuItem} ${isCurrentPage(item) ? styles.disabled : ''}`}>
+                                <Link href={`/${item.toLowerCase()}`}>{item}</Link>
                             </motion.li>
                         ))}
                     </ul>
-                    <AnimatePresence>
-                        {isSubMenuVisible && activeTab && (
-                            <motion.ul
-                                className={styles.subItems}
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                exit={{ opacity: 0 }}
-                                transition={{ duration: 0.3 }}
-                                onMouseEnter={handleSubMenuEnter}
-                                onMouseLeave={handleSubMenuLeave}
-                            >
-                                {menuItems.find(item => item.name === activeTab)?.subItems.map((subItem) => (
-                                    <motion.li
-                                        key={subItem}
-                                        whileHover={{ scale: 1.025 }}
-                                        whileTap={{ scale: 0.95 }}
-                                    >
-                                        <Link href={`/${activeTab.toLowerCase()}/${subItem.toLowerCase().replace(/\s+/g, '-')}`}>
-                                            {subItem}
-                                        </Link>
-                                    </motion.li>
-                                ))}
-                            </motion.ul>
-                        )}
-                    </AnimatePresence>
-                </motion.nav>
-            </motion.div>
+                </motion.div>
+            </motion.div >
+
+
         </>
     );
 };
