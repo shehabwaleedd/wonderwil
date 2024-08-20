@@ -14,6 +14,12 @@
         align-items: center;
         justify-content: flex-start;
         padding: 10vh 0 20vh 0;
+
+        @media (max-width: 555px) {
+            padding: 5vh 0;
+        }
+
+
         p {
             padding: 20vh 0;
             max-width: 30%;
@@ -45,6 +51,11 @@
                 @media (max-width: 777px) {
                     width: 75%;
                 }
+                @media (max-width: 555px) {
+                    width: 100%;
+                    height: 100%;
+                    right: 0;
+                }
             }
         }
     }
@@ -56,6 +67,10 @@
         width: 100%;
         position: relative;
         min-height: 150vh;
+
+        @media (max-width: 555px) {
+            min-height: auto;
+        }
         p {
             position: absolute;
             right: 3rem;
@@ -74,9 +89,9 @@
             @media (max-width: 555px) {
                 position: relative;
                 right: 0;
-                bottom: -10rem;
+                bottom: 0rem;
                 padding: 1rem;
-                max-width: 95%;
+                max-width: 100%;
 
             }
             
@@ -99,6 +114,14 @@
 
                 @media (max-width: 777px) {
                     width: 75%;
+                }
+
+                @media (max-width: 555px) {
+                    position: relative;
+                    top: 0;
+                    left: 0;
+                    height: 100%;
+                    width: 100%;
                 }
 
             }

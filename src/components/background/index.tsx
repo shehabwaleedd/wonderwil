@@ -20,9 +20,8 @@ const Background = () => {
                 setShowQuote(true);
                 Cookies.set('has_seen_overlay', 'true', { expires: 365 });
 
-                // Sequence the animations
-                setTimeout(() => setShowBackground(true), 1000); // Start showing background after 3s
-                setTimeout(() => setShowQuote(false), 5000); // Hide quote after 5s
+                setTimeout(() => setShowBackground(true), 1000); 
+                setTimeout(() => setShowQuote(false), 5000); 
             } else {
                 setShowBackground(true);
             }
@@ -31,7 +30,6 @@ const Background = () => {
 
 
     useEffect(() => {
-        // Show background on home and expertise pages
         setShowBackground(pathname === '/' || pathname === '/expertise');
     }, [pathname]);
 
