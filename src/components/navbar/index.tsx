@@ -1,21 +1,22 @@
 'use client'
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { motion, AnimatePresence } from 'framer-motion';
 import styles from "./style.module.scss";
 import { useAccess } from '@/context/AccessContext';
+import { gsap } from 'gsap';
 
 const Navbar: React.FC = () => {
-
     const pathname = usePathname();
     const { hasAccess, navOpen, setNavOpen } = useAccess();
     const prevPathRef = useRef(pathname);
+    const overlayRef = useRef<HTMLDivElement>(null);
+    const menuRef = useRef<HTMLDivElement>(null);
+    const menuIconRef = useRef<HTMLButtonElement>(null);
 
     const menuItems = ['About', 'Expertise', 'Wonder'];
 
     useEffect(() => {
-        // Check if the pathname has changed
         if (pathname !== prevPathRef.current) {
             prevPathRef.current = pathname;
             const timer = setTimeout(() => {
@@ -25,6 +26,33 @@ const Navbar: React.FC = () => {
         }
     }, [pathname, setNavOpen]);
 
+    useEffect(() => {
+        if (overlayRef.current && menuRef.current && menuIconRef.current) {
+            const tl = gsap.timeline();
+
+            if (navOpen) {
+                gsap.set(overlayRef.current, { display: 'block' });
+                tl.to(overlayRef.current, { opacity: 1, duration: 0.5, ease: 'power2.inOut' })
+                    .to(menuRef.current, { opacity: 1, duration: 0.5, ease: 'power2.inOut', display: "block" }, '-=0.3')
+                    .to(menuIconRef.current.children[0], { rotation: 45, y: 5, duration: 0.3, ease: 'power2.inOut' }, 0)
+                    .to(menuIconRef.current.children[1], { rotation: -45, y: -5, duration: 0.3, ease: 'power2.inOut' }, 0);
+            } else {
+                tl.to(menuRef.current, { opacity: 0, duration: 0.5, ease: 'power2.inOut', display: "none" })
+                    .to(overlayRef.current, {
+                        opacity: 0,
+                        duration: 0.5,
+                        ease: 'power2.inOut'
+                    }, '-=0.3')
+                    .to(menuIconRef.current.children[0], { rotation: 0, y: 0, duration: 0.3, ease: 'power2.inOut' }, 0)
+                    .to(menuIconRef.current.children[1], { rotation: 0, y: 0, duration: 0.3, ease: 'power2.inOut' }, 0)
+                    .call(() => {
+                        gsap.set(overlayRef.current, { opacity: 0 });
+                        return null;
+                    });
+            }
+        }
+    }, [navOpen]);
+
     const isCurrentPage = (itemName: string) => {
         return pathname === `/${itemName.toLowerCase()}`;
     };
@@ -32,9 +60,6 @@ const Navbar: React.FC = () => {
     const toggleMenu = () => {
         setNavOpen(!navOpen);
     };
-
-
-
 
     if (!hasAccess) {
         return null;
@@ -45,19 +70,10 @@ const Navbar: React.FC = () => {
             <header className={styles.navbar}>
                 <nav className={styles.container}>
                     <div className={styles.left}>
-                        <motion.button onClick={toggleMenu} className={styles.menuIcon} transition={{ duration: 0.3 }}
-                        >
-                            <motion.span
-                                className={styles.menuDash}
-                                animate={{ rotate: navOpen ? 45 : 0, y: navOpen ? 5 : 0 }}
-                                transition={{ duration: 0.13 }}
-                            />
-                            <motion.span
-                                className={styles.menuDash}
-                                animate={{ rotate: navOpen ? -45 : 0, y: navOpen ? -5 : 0 }}
-                                transition={{ duration: 0.13 }}
-                            />
-                        </motion.button>
+                        <button onClick={toggleMenu} className={styles.menuIcon} ref={menuIconRef}>
+                            <span className={styles.menuDash} />
+                            <span className={styles.menuDash} />
+                        </button>
                     </div>
                     <div className={styles.center}>
                         <Link href="/">
@@ -68,33 +84,25 @@ const Navbar: React.FC = () => {
                 </nav>
             </header>
 
-
-
-            <AnimatePresence>
-            {navOpen && (
-                    <motion.div
-                        className={`${styles.overlay} ${navOpen ? styles.active : ''}`}
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: navOpen ? 1 : 0 }}
-                        exit={{ opacity: 0, transition: { duration: 0.5 } }}
-                        transition={{ duration: 0.5 }}>
-                        <motion.div
-                            className={styles.menu}
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: navOpen ? 1 : 0 }}
-                            transition={{ duration: 0.5, delay: 0.2 }}
-                        >
-                            <ul className={styles.menuItems}>
-                                {menuItems.map((item) => (
-                                    <motion.li key={item} className={`${styles.menuItem} ${isCurrentPage(item) ? styles.disabled : ''}`}>
-                                        <Link href={`/${item.toLowerCase()}`}>{item}</Link>
-                                    </motion.li>
-                                ))}
-                            </ul>
-                        </motion.div>
-                    </motion.div >
-            )}
-            </AnimatePresence>
+            <div
+                ref={overlayRef}
+                className={`${styles.overlay} ${navOpen ? styles.active : ''}`}
+                style={{ opacity: 0}}
+            >
+                <div
+                    ref={menuRef}
+                    className={styles.menu}
+                    style={{ opacity: 0 }}
+                >
+                    <ul className={styles.menuItems}>
+                        {menuItems.map((item) => (
+                            <li key={item} className={`${styles.menuItem} ${isCurrentPage(item) ? styles.disabled : ''}`}>
+                                <Link href={`/${item.toLowerCase()}`}>{item}</Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
         </>
     );
 };
