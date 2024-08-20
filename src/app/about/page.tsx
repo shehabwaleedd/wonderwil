@@ -22,6 +22,13 @@ const AboutPage = () => {
         if (!mainElement || !contentElement) return
 
 
+        gsap.set(mainElement, {opacity: 0})
+
+        gsap.to(mainElement, {
+            opacity: 1,
+            duration: 1,
+        })
+
         gsap.set(mainElement, { backgroundColor: colors[0] })
 
         const tl = gsap.timeline({

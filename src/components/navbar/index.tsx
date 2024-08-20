@@ -46,7 +46,7 @@ const Navbar: React.FC = () => {
                 <nav className={styles.container}>
                     <div className={styles.left}>
                         <motion.button onClick={toggleMenu} className={styles.menuIcon} transition={{ duration: 0.3 }}
->
+                        >
                             <motion.span
                                 className={styles.menuDash}
                                 animate={{ rotate: navOpen ? 45 : 0, y: navOpen ? 5 : 0 }}
@@ -70,29 +70,31 @@ const Navbar: React.FC = () => {
 
 
 
-            <motion.div
-                className={`${styles.overlay} ${navOpen ? styles.active : ''}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: navOpen ? 1 : 0 }}
-                exit={{ opacity: 0, transition: { duration: 0.5, delay: 1.5 } }}
-                transition={{ duration: 0.5 }}>
-                <motion.div
-                    className={styles.menu}
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: navOpen ? 1 : 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                >
-                    <ul className={styles.menuItems}>
-                        {menuItems.map((item) => (
-                            <motion.li key={item} className={`${styles.menuItem} ${isCurrentPage(item) ? styles.disabled : ''}`}>
-                                <Link href={`/${item.toLowerCase()}`}>{item}</Link>
-                            </motion.li>
-                        ))}
-                    </ul>
-                </motion.div>
-            </motion.div >
-
-
+            <AnimatePresence>
+            {navOpen && (
+                    <motion.div
+                        className={`${styles.overlay} ${navOpen ? styles.active : ''}`}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: navOpen ? 1 : 0 }}
+                        exit={{ opacity: 0, transition: { duration: 0.5 } }}
+                        transition={{ duration: 0.5 }}>
+                        <motion.div
+                            className={styles.menu}
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: navOpen ? 1 : 0 }}
+                            transition={{ duration: 0.5, delay: 0.2 }}
+                        >
+                            <ul className={styles.menuItems}>
+                                {menuItems.map((item) => (
+                                    <motion.li key={item} className={`${styles.menuItem} ${isCurrentPage(item) ? styles.disabled : ''}`}>
+                                        <Link href={`/${item.toLowerCase()}`}>{item}</Link>
+                                    </motion.li>
+                                ))}
+                            </ul>
+                        </motion.div>
+                    </motion.div >
+            )}
+            </AnimatePresence>
         </>
     );
 };

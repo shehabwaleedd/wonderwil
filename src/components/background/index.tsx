@@ -5,11 +5,13 @@ import styles from "./style.module.scss"
 import { useAccess } from '@/context/AccessContext';
 import QuoteOverlay from '../quoteOverlay';
 import Cookies from 'js-cookie';
+import { usePathname } from 'next/navigation';
 
 const Background = () => {
     const { hasAccess } = useAccess();
     const [showQuote, setShowQuote] = useState(false);
     const [showBackground, setShowBackground] = useState(false);
+    const pathname = usePathname();
 
     useEffect(() => {
         if (hasAccess) {
@@ -27,6 +29,15 @@ const Background = () => {
         }
     }, [hasAccess]);
 
+    useEffect(() => {
+        if (pathname !== '/expertise') {
+            setShowBackground(false);
+        } else {
+            setShowBackground(true);
+        }
+    }, [pathname]);
+
+
     if (!hasAccess) {
         return null;
     }
@@ -40,7 +51,7 @@ const Background = () => {
                 className={styles.fixed}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: showBackground ? 1 : 0 }}
-                transition={{ duration: 2 }}
+                transition={{ duration: 1 }}
             >
                 <video autoPlay loop playsInline muted poster='/cover.png'>
                     <source src="/WonderIntro.mp4" type="video/mp4" />
