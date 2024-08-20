@@ -2,7 +2,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import Cookies from 'js-cookie';
 import { toast } from 'sonner';
-import { usePathname } from 'next/navigation';
 
 interface AccessContextType {
     hasAccess: boolean;
@@ -16,7 +15,6 @@ const AccessContext = createContext<AccessContextType | undefined>(undefined);
 export const AccessProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [hasAccess, setHasAccess] = useState<boolean>(false);
     const [navOpen, setNavOpen] = useState<boolean>(false);
-    const pathname = usePathname();
 
 
     useEffect(() => {
@@ -29,7 +27,6 @@ export const AccessProvider: React.FC<{ children: React.ReactNode }> = ({ childr
         if (code === 'wonderwilAccessCode^@#$AS@!as1o0ocax') {
             Cookies.set('access_token', 'granted', { expires: 30 });
             setHasAccess(true);
-            toast.success('Access granted!');
             return true;
         }
         toast.error('Invalid access code');

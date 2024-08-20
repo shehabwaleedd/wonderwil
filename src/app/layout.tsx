@@ -17,7 +17,7 @@ const youth = localFont({
 });
 
 const satoshiVariable = localFont({
-  src: '../../public/fonts/Satoshi-Variable.woff2',
+  src: '../../public/fonts/SourceSans3 Regular.woff2',
   variable: '--font-satoshi-variable',
   display: 'swap',
   weight: '100 900',

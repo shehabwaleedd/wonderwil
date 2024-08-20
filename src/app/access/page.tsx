@@ -3,15 +3,15 @@ import React, { useState } from 'react';
 import { useAccess } from '@/context/AccessContext';
 import Image from 'next/image';
 import styles from "./page.module.scss"
-
+import { useRouter } from 'next/navigation';
 const AccessPage: React.FC = () => {
     const [code, setCode] = useState('');
     const { checkCode, hasAccess } = useAccess();
-
+    const router = useRouter();
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
         if (checkCode(code)) {
-            window.location.href = '/';
+            router.push('/');
         }
     };
 

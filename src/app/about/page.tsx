@@ -21,6 +21,7 @@ const AboutPage = () => {
 
         if (!mainElement || !contentElement) return
 
+
         gsap.set(mainElement, { backgroundColor: colors[0] })
 
         const tl = gsap.timeline({
@@ -55,12 +56,12 @@ const AboutPage = () => {
 
     return (
         <main ref={mainRef} className={styles.about}>
+            <section className={styles.mainImg}>
+                <video loop muted playsInline autoPlay >
+                    <source src="/AboutPage.mp4" type="video/mp4" />
+                </video>
+            </section>
             <div ref={contentRef}>
-                <section className={styles.mainImg}>
-                    <video loop muted playsInline autoPlay poster='/aboutPage.png'>
-                        <source src="/AboutPage.mp4" type="video/mp4" />
-                    </video>
-                </section>
                 <section className={styles.upper}>
                     <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Error tempora eligendi magnam architecto! Ad numquam nemo dolores veritatis, illo repellendus voluptas iste aspernatur! Asperiores quas corporis, ipsa minima amet illo deserunt nam explicabo placeat sed, officiis totam possimus eius doloribus labore modi perferendis. Tenetur fugiat dolores iste sapiente aut adipisci voluptatibus consequuntur numquam quisquam temporibus.</p>
                     <div className={styles.rightImg}>

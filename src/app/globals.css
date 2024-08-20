@@ -1,7 +1,7 @@
 :root {
   --background-color: #fafafa;
-  --header-font: var(--font-youth);
-  --body-font: var(--font-satoshi-variable);
+  --paragraph-font: var(--font-satoshi-variable);
+  --body-font: var(--font-youth);
   --small-font-size: 0.8rem;
   --normal-font-size: 1rem;
   --body-font-size: 1.236rem;

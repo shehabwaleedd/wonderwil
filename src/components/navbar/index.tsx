@@ -45,21 +45,17 @@ const Navbar: React.FC = () => {
             <header className={styles.navbar}>
                 <nav className={styles.container}>
                     <div className={styles.left}>
-                        <motion.button
-                            onClick={toggleMenu}
-                            className={styles.menuIcon}
-                            animate={{ rotate: navOpen ? 90 : 0 }}
-                            transition={{ duration: 0.3 }}
-                        >
+                        <motion.button onClick={toggleMenu} className={styles.menuIcon} transition={{ duration: 0.3 }}
+>
                             <motion.span
                                 className={styles.menuDash}
                                 animate={{ rotate: navOpen ? 45 : 0, y: navOpen ? 5 : 0 }}
-                                transition={{ duration: 0.3 }}
+                                transition={{ duration: 0.13 }}
                             />
                             <motion.span
                                 className={styles.menuDash}
                                 animate={{ rotate: navOpen ? -45 : 0, y: navOpen ? -5 : 0 }}
-                                transition={{ duration: 0.3 }}
+                                transition={{ duration: 0.13 }}
                             />
                         </motion.button>
                     </div>

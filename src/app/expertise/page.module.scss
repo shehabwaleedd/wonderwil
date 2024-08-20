@@ -17,9 +17,19 @@
         max-width: 75%;
         margin: 0 auto;
 
+        @media (max-width: 555px) {
+            max-width: 95%;
+        }
+
+
         li {
             color: var(--background-color);
-            font-size: 1.5rem;
+            font-size: 1.75rem;
+            font-family: var(--body-font);
+            font-weight: 500;
+            letter-spacing: .025em;
+            text-align: center;
+
 
         }
     }
