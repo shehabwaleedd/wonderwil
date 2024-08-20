@@ -29,12 +29,10 @@ const Background = () => {
         }
     }, [hasAccess]);
 
+
     useEffect(() => {
-        if (pathname !== '/expertise') {
-            setShowBackground(false);
-        } else {
-            setShowBackground(true);
-        }
+        // Show background on home and expertise pages
+        setShowBackground(pathname === '/' || pathname === '/expertise');
     }, [pathname]);
 
 
