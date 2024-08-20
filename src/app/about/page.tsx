@@ -27,6 +27,7 @@ const AboutPage = () => {
         gsap.to(mainElement, {
             opacity: 1,
             duration: 1,
+
         })
 
         gsap.set(mainElement, { backgroundColor: colors[0] })
@@ -34,8 +35,8 @@ const AboutPage = () => {
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: contentElement,
-                start: 'top top',
-                end: 'bottom bottom',
+                start: 'top bottom-=50%', 
+                end: 'bottom top+=50%', 
                 scrub: 1,
                 onUpdate: (self) => {
                     const progress = Math.min(self.progress, 0.9999) // Prevent reaching 1

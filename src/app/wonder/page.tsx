@@ -20,35 +20,42 @@ const WonderPage = () => {
         const contentElement = contentRef.current
 
         if (!mainElement || !contentElement) return
-    
 
+        gsap.set(mainElement, {opacity: 0})
+
+        gsap.to(mainElement, {
+            opacity: 1,
+            duration: 1,
+
+        })
+
+        
         gsap.set(mainElement, { backgroundColor: colors[0] })
 
-        const tl = gsap.timeline({
-            scrollTrigger: {
-                trigger: contentElement,
-                start: 'top top',
-                end: 'bottom bottom',
-                scrub: 1,
-                onUpdate: (self) => {
-                    const progress = Math.min(self.progress, 0.9999) // Prevent reaching 1
-                    const totalSteps = colors.length - 1
-                    const step = progress * totalSteps
-                    const colorIndex = Math.floor(step)
-                    const nextColorIndex = Math.min(colorIndex + 1, colors.length - 1)
+        const sections = contentElement.querySelectorAll('section')
 
-                    const fromColor = colors[colorIndex]
-                    const toColor = colors[nextColorIndex]
+        sections.forEach((section, index) => {
+            if (index === 0) return // Skip the first section
 
-                    const colorProgress = step - colorIndex
-                    const interpolatedColor = gsap.utils.interpolate(fromColor, toColor, colorProgress)
-                    gsap.set(mainElement, { backgroundColor: interpolatedColor })
+            gsap.timeline({
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top bottom-=50%', 
+                    end: 'bottom top+=50%', 
+                    scrub: 1,
+                    onUpdate: (self) => {
+                        const progress = Math.min(self.progress, 0.9999) // Prevent reaching 1
+                        const fromColor = colors[index - 1]
+                        const toColor = colors[index]
+
+                        const interpolatedColor = gsap.utils.interpolate(fromColor, toColor, progress)
+                        gsap.set(mainElement, { backgroundColor: interpolatedColor })
+                    }
                 }
-            }
+            })
         })
 
         return () => {
-            tl.kill()
             ScrollTrigger.getAll().forEach(trigger => trigger.kill())
         }
     }, [])
