@@ -4,7 +4,18 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useAccess } from '@/context/AccessContext';
 
 const List: React.FC = () => {
-    const subItems: string[] = ['Brand Strategy', 'Art Direction', 'Digital Design & Development', 'Photography', 'Film'];
+    const subItems: string[] = [
+        'Film',
+        'Photography',
+        'Art Direction',
+        'Global Presence',
+        'Ethical Governance',
+        'Architectural Consulting',
+        'Digital Design & Development',
+        'Future-Focused Narratives',
+        'Technology Integration',
+        'Original Programming'
+    ];
     const { navOpen } = useAccess();
 
     return (

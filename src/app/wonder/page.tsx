@@ -4,6 +4,7 @@ import styles from "./page.module.scss"
 import Image from 'next/image'
 import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import CustomVideoPlayer from './(components)/VideoPlayer'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -75,8 +76,12 @@ const WonderPage = () => {
                 </video>
             </section>
             <div ref={contentRef}>
-                <section className={styles.left}>
-                    <p className={styles.start}> Lorem ipsum dolor sit amet consectetur adipisicing elit. Error tempora eligendi magnam architecto! Ad numquam nemo dolores veritatis, illo repellendus voluptas iste aspernatur! Asperiores quas corporis, ipsa minima amet illo deserunt nam explicabo placeat sed, officiis totam possimus eius doloribus labore modi perferendis. Tenetur fugiat dolores iste sapiente aut adipisci voluptatibus consequuntur numquam quisquam temporibus.</p>
+                <section className={styles.centered}>
+                    <h2>Wonder With Us</h2>
+                    <p className={styles.start}>By accessing this page, you&apos;ve unveiled our most cherished project - one that embodies the true DNA of Wonderful.</p>
+                    <p>Our creative studio is not only a specialist consultant, trusted to create brand strategy, branding, content, and production for many of the most high-profile projects in the world.</p>
+                    <p>We are also committed to the advocacy, development, and advancement of community-powered public spaces for social good.</p>
+                    <p>And we need you to achieve this together.</p>
                 </section>
                 <section className={styles.farLeft}>
                     <div className={styles.img}>
@@ -85,7 +90,16 @@ const WonderPage = () => {
                 </section>
                 <section className={styles.left}>
                     <div className={styles.rightPP}>
-                        <p className={styles.rightP}> Lorem ipsum dolor sit amet consectetur adipisicing elit. Error tempora eligendi magnam architecto! Ad numquam nemo dolores veritatis, illo repellendus voluptas iste aspernatur! Asperiores quas corporis, ipsa minima amet illo deserunt nam explicabo placeat sed, officiis totam possimus eius doloribus labore modi perferendis. Tenetur fugiat dolores iste sapiente aut adipisci voluptatibus consequuntur numquam quisquam temporibus.</p>
+                        <div className={styles.list}>
+                            <h2>Sum & Substance</h2>
+                            <p className={styles.rightP}>Our work is guided by three core values:</p>
+                            <ol>
+                                <li>Cities are for people</li>
+                                <li>Art matters</li>
+                                <li>Human connection is at the heart of innovation</li>
+                            </ol>
+                            <p>We are on a quest to discover the greatest public spaces around the world, celebrating them through artful, engaging imagery.</p>
+                        </div>
                     </div>
                 </section>
                 <section className={styles.smallImg}>
@@ -98,28 +112,36 @@ const WonderPage = () => {
                 </section>
                 <div className={styles.lowerRight}>
                     <div className={styles.column}>
-                        <h2 > Lorem ipsum dolor sit amet.</h2>
-                        <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Error tempora eligendi magnam architecto! Ad numquam nemo dolores veritatis, illo repellendus voluptas iste aspernatur! Asperiores quas corporis, ipsa minima amet illo deserunt nam explicabo placeat sed, officiis totam possimus eius doloribus labore modi perferendis. Tenetur fugiat dolores iste sapiente aut adipisci voluptatibus consequuntur numquam quisquam temporibus.</p>
+                        <div className={styles.list}>
+                            <h2 style={{ maxWidth: "65%", color: "var(--title-color)", fontSize: "1rem" }}>The living canvas</h2>
+                            <p style={{ fontSize: "1.25rem" }}>Intimate, thought-provoking, visceral and poetic storytelling is the groundwork of our content ethos. A masterfully crafted visual narrative focuses on the relationship of public space to people.</p>
+                            <p style={{ fontSize: "1.25rem" }}>Through video (a short film about the public space directed by a cinema auteur), audio (bottles of ambient sounds that act as geographical artifacts), and archival footage, we aim to illustrate the power of public spaces as platforms for community development, creating a sense of authentic human conversation among the democratic places of the world.</p>
+                            <p style={{ fontSize: "1.25rem" }}>Supplementary visuals range from historical imagery, interactions between spaces from the past and present, and data visualization that can move us to re-dream and promote the future of our cities and environment.</p>
+                        </div>
                     </div>
                 </div>
                 <section className={styles.bottom}>
                     <div className={styles.bottomImg}>
                         <Image src="/assets/wonderPage/img4.png" alt="Wonder Page Image" width={1920} height={1080} />
                     </div>
-                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Error tempora eligendi magnam architecto! Ad numquam nemo dolores veritatis, illo repellendus voluptas iste aspernatur! Asperiores quas corporis, ipsa minima amet illo deserunt nam explicabo placeat sed, officiis totam possimus eius doloribus labore modi perferendis. Tenetur fugiat dolores iste sapiente aut adipisci voluptatibus consequuntur numquam quisquam temporibus.</p>
-                    <div className={styles.videoImg}>
-                        <video loop muted playsInline autoPlay poster='/wonderPage.png'>
-                            <source src="/video.mp4" type="video/mp4" />
-                        </video>
+                    <div className={`${styles.centered} ${styles.dark}`}>
+                        <h2>The pulse of place</h2>
+                        <p>A new paradigm of interaction for the discovery and exploration of the public realm will take shape through the development of an immersive map</p>
+                        <p>The Wonder Map will serve as guiding compass, allowing us to navigate partnering public spaces and granting access to its free-standing library of vérité documentaries and a constantly refreshed selection of special features.</p>
+                        <p>The Wonder Map is designed to stimulate the ongoing dialogue about the vital life force of cities, nature, beauty and history.</p>
                     </div>
                 </section>
+                <CustomVideoPlayer />
                 <section className={styles.bottom2}>
                     <div className={styles.veryBottomImg}>
                         <Image src="/assets/wonderPage/img5.png" alt="Wonder Page Image" width={1920} height={1080} />
                     </div>
                 </section>
-                <div className={styles.bottomP}>
-                    <p style={{ color: "var(--title-color)" }}> Lorem ipsum dolor sit amet consectetur adipisicing elit. Error tempora eligendi magnam architecto! Ad numquam nemo dolores veritatis, illo repellendus voluptas iste aspernatur! Asperiores quas corporis, ipsa minima amet illo deserunt nam explicabo placeat sed, officiis totam possimus eius doloribus labore modi perferendis. Tenetur fugiat dolores iste sapiente aut adipisci voluptatibus consequuntur numquam quisquam temporibus.</p>
+                <div className={`${styles.dark} ${styles.darkRight}`}>
+                    <h2>Awe - gora</h2>
+                    <p style={{ color: "var(--title-color)" }}>Our distribution model will include international cultural exhibitions, such as the Venice Biennale, architectural firms, art exhibitions, public installations, education centers, local institutions, and performance spaces for talks and panels.</p>
+                    <p style={{ color: "var(--title-color)" }}>Wonderwil is the culmination of a lifetime&apos;s vision. At the heart of our work is focus community, meaningful shared experiences, and lasting impact. Our projects will stand as beacons of hope and renewal through continual exploration and reinterpretation, bringing vitality to the arts and public spaces.</p>
+                    <p style={{ color: "var(--title-color)" }}>We invite you to wonder with us.</p>
                 </div>
             </div>
         </main>
