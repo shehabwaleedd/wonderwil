@@ -42,7 +42,9 @@ $breakpoints: (
 
 // Variables
 $default-gap: 1rem;
-$large-gap: 1.5rem;
+$large-gap: 2rem;
+$text-max-width: 65%;
+$text-max-width-small: 90%;
 
 // Styles
 .wonder {
@@ -65,13 +67,15 @@ $large-gap: 1.5rem;
     }
 }
 
+
 .centered {
     @include flex-column;
     align-items: center;
+    justify-content: center;
     max-width: 50%;
     margin: 0 auto;
-    padding: 25vh 0;
     gap: $large-gap;
+    text-align: center;
 
     @include respond-to(medium) {
         max-width: 70%;
@@ -82,22 +86,53 @@ $large-gap: 1.5rem;
         gap: $default-gap;
     }
 
+    h2, p, ol {
+        width: 100%;
+        max-width: $text-max-width;
+        margin: 0 auto;
+
+        @include respond-to(small) {
+            max-width: $text-max-width-small;
+            font-size: 1.3rem !important;
+        }
+        
+    }
+
+    ol {
+        li {
+            width: 100%;
+            text-align: left;
+            font-size: 1.5rem;
+            color: var(--subtitle-color);
+            @include respond-to(small) {
+                font-size: 1.3rem !important;
+            }
+            
+        }
+    }
+
     h2 {
         color: var(--title2-color) !important;
-        font-size: 1.5rem !important;
+        font-size: 1.3rem !important;
+        text-align: left;
+        padding-left: 5%;
+        @include respond-to(small) {
+            font-size: 1rem !important;
+        }
+        
     }
 
     p {
-        text-align: left !important;
-        width: 100%;
-        max-width: 60%;
-        font-size: 16px;
+        font-size: 1.5rem;
         font-family: var(--body-font);
         color: var(--subtitle-color);
+        text-align: left;
+        font-weight: 400;
 
         @include respond-to(small) {
-            max-width: 100%;
+            font-size: 1.3rem !important;
         }
+        
     }
 }
 
@@ -105,7 +140,6 @@ $large-gap: 1.5rem;
     @include flex-column;
     align-items: center;
     justify-content: flex-start;
-    padding: 10vh 0 0 0;
     gap: 5vh;
     position: relative;
 
@@ -115,8 +149,7 @@ $large-gap: 1.5rem;
     }
 
     p {
-        padding: 10vh 0;
-        max-width: 40%;
+        max-width: $text-max-width;
         text-align: justify;
         color: var(--background-color);
         font-family: var(--body-font);
@@ -126,8 +159,7 @@ $large-gap: 1.5rem;
         }
 
         @include respond-to(small) {
-            max-width: 95%;
-            padding: $default-gap;
+            max-width: $text-max-width-small;
         }
     }
 }
@@ -136,10 +168,6 @@ $large-gap: 1.5rem;
     @include flex-column;
     @include full-width;
     align-items: flex-start;
-
-    @include respond-to(small) {
-        padding-top: 10vh;
-    }
 
     .img {
         display: flex;
@@ -162,7 +190,6 @@ $large-gap: 1.5rem;
     @include center-content;
     @include full-width;
     position: relative;
-    min-height: 80vh;
     gap: 3rem;
 
     @include respond-to(small) {
@@ -175,7 +202,6 @@ $large-gap: 1.5rem;
     @include center-content;
     @include full-width;
     height: 100%;
-    padding: 10vh 0;
 
     @include respond-to(small) {
         height: 100%;
@@ -197,7 +223,7 @@ $large-gap: 1.5rem;
     display: flex;
     @include full-width;
     justify-content: flex-end;
-    padding: 2rem 5vw 20vh 2rem;
+    padding: 0rem 5vw 0vh 2rem;
     position: relative;
     color: var(--background-color);
 
@@ -206,7 +232,7 @@ $large-gap: 1.5rem;
     }
 
     p {
-        max-width: 40%;
+        max-width: $text-max-width;
 
         @include respond-to(medium) {
             max-width: 80%;
@@ -232,24 +258,12 @@ $large-gap: 1.5rem;
     @include respond-to(small) {
         padding-right: 0;
         justify-content: center;
-    }
-}
-
-.rightP {
-    position: relative;
-    padding: 5vh 0;
-    max-width: 40%;
-    text-align: justify;
-    color: var(--title-color);
-
-    @include respond-to(small) {
         width: 100%;
-        max-width: 100%;
-        bottom: 0;
-        right: 0;
-        padding: $default-gap;
+        max-width: $text-max-width-small;
+
     }
 }
+
 
 .leftImage {
     @include full-width;
@@ -270,6 +284,20 @@ $large-gap: 1.5rem;
     }
 }
 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20vh;
+    width: 100%;
+    height: 100%;
+
+    @include respond-to(small) {
+        gap: 10vh;
+    }
+}
+
 .lowerRight {
     @include flex-column;
     align-items: flex-end;
@@ -280,8 +308,7 @@ $large-gap: 1.5rem;
     @include full-width;
 
     @include respond-to(medium) {
-        align-items: center
-
+        align-items: center;
     }
 
     .column {
@@ -293,8 +320,8 @@ $large-gap: 1.5rem;
 
         @include respond-to(medium) {
             width: 65%;
-
         }
+
         @include respond-to(small) {
             width: 100%;
             padding-right: 0;
@@ -313,7 +340,11 @@ $large-gap: 1.5rem;
         font-family: var(--body-font);
         color: var(--title-color);
         text-align: left;
-        max-width: 88%;
+        max-width: $text-max-width;
+
+        @include respond-to(small) {
+            max-width: $text-max-width-small;
+        }
     }
 }
 
@@ -322,18 +353,17 @@ $large-gap: 1.5rem;
     @include center-content;
     @include full-width;
     position: relative;
-    min-height: 150vh;
     gap: 2rem;
-    padding: 5vh 0;
 
     @include respond-to(small) {
         min-height: auto;
         height: 100%;
+        padding: 0;
     }
 
     p {
         @include full-width;
-        max-width: 40%;
+        max-width: $text-max-width;
         text-align: justify;
         color: var(--title-color);
 
@@ -342,7 +372,7 @@ $large-gap: 1.5rem;
         }
 
         @include respond-to(small) {
-            max-width: 95%;
+            max-width: $text-max-width-small;
             text-align: left;
         }
     }
@@ -352,9 +382,9 @@ $large-gap: 1.5rem;
     display: flex;
     @include full-width;
     justify-content: flex-end;
-    padding-bottom: 15vh;
 
     @include respond-to(small) {
+        justify-content: center;
         padding-bottom: 0;
     }
 
@@ -403,7 +433,6 @@ $large-gap: 1.5rem;
     @include full-width;
     min-height: 100vh;
     position: relative;
-    padding: 30vh 0;
 
     @include respond-to(small) {
         min-height: auto;
@@ -444,47 +473,50 @@ $large-gap: 1.5rem;
     justify-content: center;
     @include full-width;
     max-width: 100%;
-    gap: $default-gap;
+    gap: $large-gap;  
+    padding-right: 10vw;
 
-    @include respond-to(small) {
-        align-items: center;
+    h2, p, ol {
+        max-width: 38.5%;
+
+        @include respond-to(medium) {
+            max-width: 70%;
+        }
+
+        @include respond-to(small) {
+            max-width: $text-max-width-small;
+        }
     }
 
     h2 {
         color: var(--title2-color);
         @include full-width;
-        max-width: 40%;
+        font-size: 1.3rem !important;
+        padding-left: 5%;
 
         @include respond-to(small) {
-            max-width: 90%;
-            font-size: 1rem;
-        }
-        @include respond-to(medium) {
-            max-width: 70%;
+            font-size: 1rem !important;
         }
     }
 
     p {
+        font-size: 1.5rem !important;
         padding: 0;
         @include full-width;
-        color: var(--title-color);
+        color: var(--subtitle-color);
+
+        @include respond-to(small) {
+            font-size: 1.3rem !important;
+        }
+        
     }
 
     ol {
         padding-left: $default-gap;
         @include full-width;
-        max-width: 40%;
         @include flex-column;
         gap: 0.5rem;
         font-family: var(--body-font);
-
-        @include respond-to(medium) {
-            max-width: 80%;
-        }
-
-        @include respond-to(small) {
-            max-width: 94%;
-        }
 
         li {
             @include full-width;
@@ -495,6 +527,7 @@ $large-gap: 1.5rem;
 }
 
 @mixin dark-shared {
+
     h2 {
         color: var(--title-color) !important;
         font-size: 1rem;
@@ -502,10 +535,9 @@ $large-gap: 1.5rem;
 
     p {
         color: var(--subtitle-color) !important;
-        font-size: 1.3rem;
-        max-width: 70%;
+        font-size: 1.5rem;
         font-weight: 400;
-        font-family: var(--paragraph-font);
+        font-family: var(--body-font);
     }
 }
 
@@ -514,34 +546,52 @@ $large-gap: 1.5rem;
 }
 
 .darkRight {
-    @include dark-shared;
     @include flex-column;
-    @include full-width;
     align-items: flex-end !important;
-    padding: 0 5rem 10vh 1rem;
-    gap: $default-gap;
+    width: 100%;
+    max-width: 100%;
+    align-self: flex-end;
+    align-content: flex-end;
+    
 
     @include respond-to(small) {
         padding: 5vh 0;
     }
 
-    h2,
-    p {
+    h2, p {
         text-align: left !important;
-        max-width: 55%;
-        @include full-width;
-
-        @include respond-to(small) {
-            max-width: 95%;
-        }
+        // max-width: $text-max-width;
     }
 
     h2 {
-        padding-left: 2rem;
         font-size: 1.1rem;
+    }
+}
 
-        @include respond-to(small) {
-            padding-left: 0;
+.topP {
+    padding-top: 20vh;
+
+    @include respond-to(small) {
+        padding-top: 10vh;
+    }
+
+}
+
+.finalBottom {
+    padding-bottom: 20vh;
+    @include respond-to(small) {
+        padding-bottom: 10vh;
+    }
+}
+
+.dynamic {
+    @include respond-to(small) {
+        h2 {
+            color: var(--title-color) !important;
+        }
+
+        p {
+            color: var(--subtitle-color) !important;
         }
     }
 }

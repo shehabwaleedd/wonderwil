@@ -75,8 +75,8 @@ const WonderPage = () => {
                     <source src="/WonderPage.mp4" type="video/mp4" />
                 </video>
             </section>
-            <div ref={contentRef}>
-                <section className={styles.centered}>
+            <div ref={contentRef} className={styles.container}>
+                <section className={`${styles.centered} ${styles.topP}`}>
                     <h2>Wonder With Us</h2>
                     <p className={styles.start}>By accessing this page, you&apos;ve unveiled our most cherished project - one that embodies the true DNA of Wonderful.</p>
                     <p>Our creative studio is not only a specialist consultant, trusted to create brand strategy, branding, content, and production for many of the most high-profile projects in the world.</p>
@@ -88,19 +88,16 @@ const WonderPage = () => {
                         <Image src="/assets/wonderPage/img1.png" alt="Wonder Page Image" width={1920} height={1080} />
                     </div>
                 </section>
-                <section className={styles.left}>
-                    <div className={styles.rightPP}>
-                        <div className={styles.list}>
-                            <h2>Sum & Substance</h2>
-                            <p className={styles.rightP}>Our work is guided by three core values:</p>
-                            <ol>
-                                <li>Cities are for people</li>
-                                <li>Art matters</li>
-                                <li>Human connection is at the heart of innovation</li>
-                            </ol>
-                            <p>We are on a quest to discover the greatest public spaces around the world, celebrating them through artful, engaging imagery.</p>
-                        </div>
-                    </div>
+                <section className={styles.centered}>
+                    <h2>Sum & Substance</h2>
+                    <p>Our work is guided by three core values:</p>
+                    <ol>
+                        <li>Cities are for people</li>
+                        <li>Art matters</li>
+                        <li>Human connection is at the heart of innovation</li>
+                    </ol>
+                    <p>We are on a quest to discover the greatest public spaces around the world, celebrating them through artful, engaging imagery.</p>
+
                 </section>
                 <section className={styles.smallImg}>
                     <Image src="/assets/wonderPage/img2.png" alt="Wonder Page Image" width={1920} height={1080} />
@@ -110,38 +107,34 @@ const WonderPage = () => {
                         <Image src="/assets/wonderPage/img3.png" alt="Wonder Page Image" width={1920} height={1080} />
                     </div>
                 </section>
-                <div className={styles.lowerRight}>
-                    <div className={styles.column}>
-                        <div className={styles.list}>
-                            <h2 style={{ maxWidth: "65%", color: "var(--title-color)", fontSize: "1rem" }}>The living canvas</h2>
-                            <p style={{ fontSize: "1.25rem" }}>Intimate, thought-provoking, visceral and poetic storytelling is the groundwork of our content ethos. A masterfully crafted visual narrative focuses on the relationship of public space to people.</p>
-                            <p style={{ fontSize: "1.25rem" }}>Through video (a short film about the public space directed by a cinema auteur), audio (bottles of ambient sounds that act as geographical artifacts), and archival footage, we aim to illustrate the power of public spaces as platforms for community development, creating a sense of authentic human conversation among the democratic places of the world.</p>
-                            <p style={{ fontSize: "1.25rem" }}>Supplementary visuals range from historical imagery, interactions between spaces from the past and present, and data visualization that can move us to re-dream and promote the future of our cities and environment.</p>
-                        </div>
-                    </div>
+                <div className={`${styles.list} ${styles.dynamic}`}>
+                    <h2 style={{ color: "var(--title-color)", fontSize: "1rem" }}>The living canvas</h2>
+                    <p style={{ fontSize: "1.25rem" }}>Intimate, thought-provoking, visceral and poetic storytelling is the groundwork of our content ethos. A masterfully crafted visual narrative focuses on the relationship of public space to people.</p>
+                    <p style={{ fontSize: "1.25rem" }}>Through video (a short film about the public space directed by a cinema auteur), audio (bottles of ambient sounds that act as geographical artifacts), and archival footage, we aim to illustrate the power of public spaces as platforms for community development, creating a sense of authentic human conversation among the democratic places of the world.</p>
+                    <p style={{ fontSize: "1.25rem" }}>Supplementary visuals range from historical imagery, interactions between spaces from the past and present, and data visualization that can move us to re-dream and promote the future of our cities and environment.</p>
                 </div>
                 <section className={styles.bottom}>
                     <div className={styles.bottomImg}>
                         <Image src="/assets/wonderPage/img4.png" alt="Wonder Page Image" width={1920} height={1080} />
                     </div>
-                    <div className={`${styles.centered} ${styles.dark}`}>
-                        <h2>The pulse of place</h2>
-                        <p>A new paradigm of interaction for the discovery and exploration of the public realm will take shape through the development of an immersive map</p>
-                        <p>The Wonder Map will serve as guiding compass, allowing us to navigate partnering public spaces and granting access to its free-standing library of vérité documentaries and a constantly refreshed selection of special features.</p>
-                        <p>The Wonder Map is designed to stimulate the ongoing dialogue about the vital life force of cities, nature, beauty and history.</p>
-                    </div>
                 </section>
+                <div className={`${styles.centered} ${styles.dark}`}>
+                    <h2>The pulse of place</h2>
+                    <p>A new paradigm of interaction for the discovery and exploration of the public realm will take shape through the development of an immersive map</p>
+                    <p>The Wonder Map will serve as guiding compass, allowing us to navigate partnering public spaces and granting access to its free-standing library of vérité documentaries and a constantly refreshed selection of special features.</p>
+                    <p>The Wonder Map is designed to stimulate the ongoing dialogue about the vital life force of cities, nature, beauty and history.</p>
+                </div>
                 <CustomVideoPlayer />
                 <section className={styles.bottom2}>
                     <div className={styles.veryBottomImg}>
                         <Image src="/assets/wonderPage/img5.png" alt="Wonder Page Image" width={1920} height={1080} />
                     </div>
                 </section>
-                <div className={`${styles.dark} ${styles.darkRight}`}>
-                    <h2>Awe - gora</h2>
-                    <p style={{ color: "var(--title-color)" }}>Our distribution model will include international cultural exhibitions, such as the Venice Biennale, architectural firms, art exhibitions, public installations, education centers, local institutions, and performance spaces for talks and panels.</p>
-                    <p style={{ color: "var(--title-color)" }}>Wonderwil is the culmination of a lifetime&apos;s vision. At the heart of our work is focus community, meaningful shared experiences, and lasting impact. Our projects will stand as beacons of hope and renewal through continual exploration and reinterpretation, bringing vitality to the arts and public spaces.</p>
-                    <p style={{ color: "var(--title-color)" }}>We invite you to wonder with us.</p>
+                <div className={`${styles.list} ${styles.finalBottom}`}>
+                    <h2 style={{color:"var(--title-color)"}}>Awe - gora</h2>
+                    <p>Our distribution model will include international cultural exhibitions, such as the Venice Biennale, architectural firms, art exhibitions, public installations, education centers, local institutions, and performance spaces for talks and panels.</p>
+                    <p>Wonderwil is the culmination of a lifetime&apos;s vision. At the heart of our work is focus community, meaningful shared experiences, and lasting impact. Our projects will stand as beacons of hope and renewal through continual exploration and reinterpretation, bringing vitality to the arts and public spaces.</p>
+                    <p>We invite you to wonder with us.</p>
                 </div>
             </div>
         </main>
