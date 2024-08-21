@@ -14,6 +14,19 @@
   --subtitle-color: #a7a7a7;
   --border-color: #eae4d8;
 
+
+  --small-font-size: 0.8rem;
+  --normal-font-size: 1rem;
+  --body-font-size: 1.236rem;
+  --medium-font-size: 1.318rem;
+  --big-font-size: 1.618rem;
+  --semi-big-font-size: 2rem;
+  --bigger-font-size: 2.618rem;
+  --biggest-font-size: 4.236rem;
+  --header-font-size: 5.618rem;
+  --navigation-font-size: 6.618rem;
+
+  
 }
 
 .lenis.lenis-stopped {

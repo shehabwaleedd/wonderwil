@@ -1,9 +1,10 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Image from 'next/image';
 import styles from './style.module.scss';
 
 const CustomVideoPlayer = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
+    const [isMuted, setIsMuted] = useState(false);
 
     const togglePlay = () => {
         if (videoRef.current) {
@@ -15,15 +16,10 @@ const CustomVideoPlayer = () => {
         }
     };
 
-    const decreaseVolume = () => {
-        if (videoRef.current && videoRef.current.volume > 0) {
-            videoRef.current.volume = Math.max(0, videoRef.current.volume - 0.1);
-        }
-    };
-
-    const increaseVolume = () => {
-        if (videoRef.current && videoRef.current.volume < 1) {
-            videoRef.current.volume = Math.min(1, videoRef.current.volume + 0.1);
+    const toggleMute = () => {
+        if (videoRef.current) {
+            videoRef.current.muted = !videoRef.current.muted;
+            setIsMuted(videoRef.current.muted);
         }
     };
 
@@ -39,10 +35,10 @@ const CustomVideoPlayer = () => {
                 Your browser does not support the video tag.
             </video>
             <div className={styles.controls}>
-                <button onClick={decreaseVolume} aria-label="Decrease Volume">
+                <button onClick={toggleMute} aria-label={isMuted ? "Unmute" : "Mute"}>
                     <Image 
-                        src="/assets/wonderPage/mute_hires.png"
-                        alt="Decrease Volume" 
+                        src={isMuted ? "/assets/wonderPage/mute_hires.png" : "/assets/wonderPage/medium-volume_hires.png"}
+                        alt={isMuted ? "Unmute" : "Mute"} 
                         width={24} 
                         height={24}
                     />
@@ -51,14 +47,6 @@ const CustomVideoPlayer = () => {
                     <Image 
                         src="/assets/wonderPage/pause_hires.png"
                         alt="Play/Pause" 
-                        width={24} 
-                        height={24}
-                    />
-                </button>
-                <button onClick={increaseVolume} aria-label="Increase Volume">
-                    <Image 
-                        src="/assets/wonderPage/medium-volume_hires.png"
-                        alt="Increase Volume" 
                         width={24} 
                         height={24}
                     />

@@ -489,12 +489,7 @@ $large-gap: 1.5rem;
         li {
             @include full-width;
             text-align: left;
-            color: var(--subtitle-color);
-
-            @include respond-to(medium) {
-                color: var(--title-color);
-            }
-
+            color: var(--title-color);
         }
     }
 }
