@@ -23,18 +23,20 @@ const AccessPage: React.FC = () => {
 
 
     return (
-        <div className={styles.access}>
-            <Image src="/intro.png" alt="Wonderwil" width={500} height={500} />
-            <form onSubmit={handleSubmit}>
-                <input
-                    type="text"
-                    value={code}
-                    onChange={(e) => setCode(e.target.value)}
-                    placeholder="Enter your access code"
-                />
-                <button type="submit">Submit</button>
-            </form>
-        </div>
+        <main className={styles.access}>
+            <section className={styles.container}>
+                <Image src="/intro.png" alt="Wonderwil" width={500} height={500} />
+                <form onSubmit={handleSubmit}>
+                    <input
+                        type="text"
+                        value={code}
+                        onChange={(e) => setCode(e.target.value)}
+                        placeholder="enter your access code"
+                    />
+                    <button type="submit">Submit</button>
+                </form>
+            </section>
+        </main>
     );
 };
 

@@ -92,7 +92,7 @@ $large-gap: 1.5rem;
         width: 100%;
         max-width: 60%;
         font-size: 16px;
-        font-family: var(--paragraph-font);
+        font-family: var(--body-font);
         color: var(--subtitle-color);
 
         @include respond-to(small) {
@@ -119,7 +119,7 @@ $large-gap: 1.5rem;
         max-width: 40%;
         text-align: justify;
         color: var(--background-color);
-        font-family: var(--paragraph-font);
+        font-family: var(--body-font);
 
         @include respond-to(medium) {
             max-width: 80%;
@@ -310,7 +310,7 @@ $large-gap: 1.5rem;
     }
 
     p {
-        font-family: var(--paragraph-font);
+        font-family: var(--body-font);
         color: var(--title-color);
         text-align: left;
         max-width: 88%;
@@ -476,7 +476,7 @@ $large-gap: 1.5rem;
         max-width: 40%;
         @include flex-column;
         gap: 0.5rem;
-        font-family: var(--paragraph-font);
+        font-family: var(--body-font);
 
         @include respond-to(medium) {
             max-width: 80%;

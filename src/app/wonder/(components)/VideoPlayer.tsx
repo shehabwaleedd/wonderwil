@@ -35,19 +35,19 @@ const CustomVideoPlayer = () => {
                 Your browser does not support the video tag.
             </video>
             <div className={styles.controls}>
-                <button onClick={toggleMute} aria-label={isMuted ? "Unmute" : "Mute"}>
-                    <Image 
-                        src={isMuted ? "/assets/wonderPage/mute_hires.png" : "/assets/wonderPage/medium-volume_hires.png"}
-                        alt={isMuted ? "Unmute" : "Mute"} 
-                        width={24} 
+                <button onClick={togglePlay} aria-label="Play/Pause">
+                    <Image
+                        src="/assets/wonderPage/pause_hires.png"
+                        alt="Play/Pause"
+                        width={24}
                         height={24}
                     />
                 </button>
-                <button onClick={togglePlay} aria-label="Play/Pause">
-                    <Image 
-                        src="/assets/wonderPage/pause_hires.png"
-                        alt="Play/Pause" 
-                        width={24} 
+                <button onClick={toggleMute} aria-label={isMuted ? "Unmute" : "Mute"}>
+                    <Image
+                        src={isMuted ? "/assets/wonderPage/mute_hires.png" : "/assets/wonderPage/medium-volume_hires.png"}
+                        alt={isMuted ? "Unmute" : "Mute"}
+                        width={24}
                         height={24}
                     />
                 </button>

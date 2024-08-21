@@ -7,13 +7,13 @@
     height: 100vh;
     position: relative;
     z-index: 99999999999;
-    max-width: 50%;
-    margin: 0 auto;
-
+    background-color: #abacac;
+    transition: var(--animation-primary);
     img {
         position: relative;
         z-index: 9999;
         object-fit: cover;
+        padding-right: 3vw;
     }
 
     form {
@@ -22,6 +22,7 @@
         align-items: center;
         justify-content: center;
         gap: 1rem;
+        transition: var(--animation-primary);
     }
 
     input {
@@ -29,14 +30,30 @@
         width: fit-content;
         height: fit-content;
         padding: 1rem;
-        background-color: var(--subtitle-color);
+        background-color: #c7c7c7;
         border: var(--border);
+        transition: var(--animation-primary);
 
         &:focus {
-            outline: 1px solid #000;
+            outline: 1px solid #929292;
+            transition: var(--animation-primary);
         }
     }
+
     button {
         background-color: transparent;
+        transition: var(--animation-primary);
     }
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    max-width: 50%;
+    margin: 0 auto;
+    gap: 2rem;
+    transition: var(--animation-primary);
 }

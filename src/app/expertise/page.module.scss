@@ -7,6 +7,7 @@
     height: 100vh;
     position: relative;
     z-index: 1;
+    background: rgba(0, 0, 0, 0.6);
 
     ul {
         display: flex;
@@ -16,6 +17,7 @@
         justify-content: center;
         max-width: 75%;
         margin: 0 auto;
+        gap: 1rem;
 
         @media (max-width: 555px) {
             max-width: 95%;

@@ -69,7 +69,7 @@ const AboutPage = () => {
                     <source src="/AboutPage.mp4" type="video/mp4" />
                 </video>
             </section>
-            <div ref={contentRef}>
+            <div ref={contentRef} className={styles.container}>
                 <div className={styles.centered}>
                     <h2> Integrity, Grit & Imagination </h2>
                     <p> We are a global creative studio dedicated to the realm of architecture, partnering with visionary businesses, funds, and developers to shape the future through our relentless pursuit of excellence. </p>
