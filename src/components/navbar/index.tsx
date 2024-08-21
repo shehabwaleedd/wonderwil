@@ -29,30 +29,37 @@ const Navbar: React.FC = () => {
     useEffect(() => {
         if (overlayRef.current && menuRef.current && menuIconRef.current) {
             const tl = gsap.timeline();
-
+    
             if (navOpen) {
-                gsap.set(overlayRef.current, { display: 'block' });
+                gsap.set(overlayRef.current, { display: 'block', opacity: 0 });
+                gsap.set(menuRef.current, { display: 'block', opacity: 0 });
+                
                 tl.to(overlayRef.current, { opacity: 1, duration: 0.5, ease: 'power2.inOut' })
-                    .to(menuRef.current, { opacity: 1, duration: 0.5, ease: 'power2.inOut', display: "block" }, '-=0.3')
+                    .to(menuRef.current, { opacity: 1, duration: 0.5, ease: 'power2.inOut' }, '-=0.3')
                     .to(menuIconRef.current.children[0], { rotation: 45, y: 5, duration: 0.3, ease: 'power2.inOut' }, 0)
                     .to(menuIconRef.current.children[1], { rotation: -45, y: -5, duration: 0.3, ease: 'power2.inOut' }, 0);
             } else {
-                tl.to(menuRef.current, { opacity: 0, duration: 0.5, ease: 'power2.inOut', display: "none" })
-                    .to(overlayRef.current, {
-                        opacity: 0,
-                        duration: 0.5,
-                        ease: 'power2.inOut'
-                    }, '-=0.3')
-                    .to(menuIconRef.current.children[0], { rotation: 0, y: 0, duration: 0.3, ease: 'power2.inOut' }, 0)
-                    .to(menuIconRef.current.children[1], { rotation: 0, y: 0, duration: 0.3, ease: 'power2.inOut' }, 0)
-                    .call(() => {
-                        gsap.set(overlayRef.current, { opacity: 0 });
-                        return null;
-                    });
+                tl.to(menuRef.current, { 
+                    opacity: 0, 
+                    duration: 0.5, 
+                    ease: 'power2.inOut',
+                    onComplete: () => {
+                        gsap.set(menuRef.current, { display: 'none' });
+                    }
+                })
+                .to(overlayRef.current, {
+                    opacity: 0,
+                    duration: 0.5,
+                    ease: 'power2.inOut',
+                    onComplete: () => {
+                        gsap.set(overlayRef.current, { display: 'none', delay: 0.5 });
+                    }
+                }, '-=0.3')
+                .to(menuIconRef.current.children[0], { rotation: 0, y: 0, duration: 0.3, ease: 'power2.inOut' }, 0)
+                .to(menuIconRef.current.children[1], { rotation: 0, y: 0, duration: 0.3, ease: 'power2.inOut' }, 0);
             }
         }
     }, [navOpen]);
-
     const isCurrentPage = (itemName: string) => {
         return pathname === `/${itemName.toLowerCase()}`;
     };
@@ -87,7 +94,7 @@ const Navbar: React.FC = () => {
             <div
                 ref={overlayRef}
                 className={`${styles.overlay} ${navOpen ? styles.active : ''}`}
-                style={{ opacity: 0}}
+                style={{ opacity: 0 }}
             >
                 <div
                     ref={menuRef}

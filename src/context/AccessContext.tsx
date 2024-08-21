@@ -24,7 +24,7 @@ export const AccessProvider: React.FC<{ children: React.ReactNode }> = ({ childr
 
 
     const checkCode = (code: string) => {
-        if (code === 'wonderwilAccessCode^@#$AS@!as1o0ocax') {
+        if (code === '2721') {
             Cookies.set('access_token', 'granted', { expires: 30 });
             setHasAccess(true);
             return true;

@@ -22,7 +22,7 @@ const AboutPage = () => {
         if (!mainElement || !contentElement) return
 
 
-        gsap.set(mainElement, {opacity: 0})
+        gsap.set(mainElement, { opacity: 0 })
 
         gsap.to(mainElement, {
             opacity: 1,
@@ -35,8 +35,8 @@ const AboutPage = () => {
         const tl = gsap.timeline({
             scrollTrigger: {
                 trigger: contentElement,
-                start: 'top bottom-=50%', 
-                end: 'bottom top+=50%', 
+                start: 'top bottom-=50%',
+                end: 'bottom top+=50%',
                 scrub: 1,
                 onUpdate: (self) => {
                     const progress = Math.min(self.progress, 0.9999) // Prevent reaching 1
@@ -70,18 +70,23 @@ const AboutPage = () => {
                 </video>
             </section>
             <div ref={contentRef}>
+                <div className={styles.centered}>
+                    <h2> Integrity, Grit & Imagination </h2>
+                    <p> We are a global creative studio dedicated to the realm of architecture, partnering with visionary businesses, funds, and developers to shape the future through our relentless pursuit of excellence. </p>
+                    <p> Our consultancy delivers bespoke solutions covering brand strategy, content, and production for a diverse array of architectural and design firms. We&apos;ve cultivated a unique culture comprising influential auteurs from the worlds of film and photography. </p>
+                    <p> We believe our work must have a positive and lasting legacy, transforming brands, communities, and the world around us. Together, we reimagine the established, explore the uncharted, and forge authentic, enduring bonds.</p>
+                </div>
                 <section className={styles.upper}>
-                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Error tempora eligendi magnam architecto! Ad numquam nemo dolores veritatis, illo repellendus voluptas iste aspernatur! Asperiores quas corporis, ipsa minima amet illo deserunt nam explicabo placeat sed, officiis totam possimus eius doloribus labore modi perferendis. Tenetur fugiat dolores iste sapiente aut adipisci voluptatibus consequuntur numquam quisquam temporibus.</p>
-                    <div className={styles.rightImg}>
-                        <Image src="/assets/aboutPage/img1.png" alt="About" width={1920} height={1080} />
-                    </div>
+                    <Image src="/assets/aboutPage/img1.png" alt="About" width={1920} height={1080} />
                 </section>
                 <section className={styles.lower}>
-                    <div className={styles.leftImg}>
-                        <Image src="/assets/aboutPage/img2.png" alt="About" width={1920} height={1080} />
-                    </div>
-                    <p> Lorem ipsum dolor sit amet consectetur adipisicing elit. Error tempora eligendi magnam architecto! Ad numquam nemo dolores veritatis, illo repellendus voluptas iste aspernatur! Asperiores quas corporis, ipsa minima amet illo deserunt nam explicabo placeat sed, officiis totam possimus eius doloribus labore modi perferendis. Tenetur fugiat dolores iste sapiente aut adipisci voluptatibus consequuntur numquam quisquam temporibus.</p>
+                    <Image src="/assets/aboutPage/img2.png" alt="About" width={1920} height={1080} />
                 </section>
+                <div className={styles.rightText}>
+                    <h2> A work of wonder </h2>
+                    <p>We prioritize clarity of message and cost certainty in content creation, delivering measurable results with a passion for detail and authenticity. Our commitment to inclusivity, equity, and sustainability underpins everything we do.</p>
+                    <p>Through our work, we create a future where seventh art, literature, music, and architecture converge to make a meaningful impact, leaving a legacy that resonates for generations to come.</p>
+                </div>
             </div>
         </main>
     )

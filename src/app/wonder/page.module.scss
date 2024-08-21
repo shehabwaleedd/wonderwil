@@ -1,401 +1,85 @@
-.wonder {
+// Breakpoints
+$breakpoints: (
+    small: 555px,
+    medium: 777px,
+    large: 992px,
+    xlarge: 1200px
+);
+
+// Mixins
+@mixin respond-to($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (max-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+
+    @else {
+        @warn "Unknown breakpoint: #{$breakpoint}.";
+    }
+}
+
+@mixin flex-column {
     display: flex;
     flex-direction: column;
+}
+
+@mixin center-content {
+    display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@mixin full-width {
     width: 100%;
+}
+
+@mixin responsive-image {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+}
+
+// Variables
+$default-gap: 1rem;
+$large-gap: 1.5rem;
+
+// Styles
+.wonder {
+    @include flex-column;
+    @include center-content;
+    @include full-width;
     height: 100%;
     position: relative;
     z-index: 99;
 }
 
-.left {
-    height: fit-content;
-
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 10vh 0 0 0;
-    gap: 5vh;
-    position: relative;
-
-    @media (max-width: 555px) {
-        height: 100%;
-        gap: 1rem;
-    }
-
-    p {
-        padding: 10vh 0;
-        max-width: 40%;
-        text-align: justify;
-        color: var(--background-color);
-        font-family: var(--paragraph-font);
-
-        @media (max-width: 777px) {
-            max-width: 80%;
-        }
-
-        @media (max-width: 555px) {
-            max-width: 95%;
-            padding: 1rem;
-        }
-    }
-
-}
-
-
-
-
-
-.farLeft {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    align-items: flex-start;
-
-    @media (max-width: 555px) {
-        padding-top: 10vh;
-    }
-
-
-    .img {
-        display: flex;
-        justify-content: flex-start;
-        width: 50%;
-        height: 100%;
-
-        @media (max-width: 555px) {
-            width: 100%;
-        }
-
-        img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-
-            @media (max-width: 777px) {
-                width: 100%;
-                object-fit: contain;
-            }
-        }
-    }
-}
-
-
-.lower {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    position: relative;
-    min-height: 80vh;
-    gap: 3rem;
-
-    @media (max-width: 555px) {
-        min-height: unset;
-        height: 100%;
-    }
-}
-
-.smallImg {
-    display: flex;
-    justify-content: center;
-    align-content: center;
-    width: 100%;
-    height: 100%;
-    padding: 10vh 0;
-
-    @media (max-width: 555px) {
-        height: 100%;
-        padding: 0;
-    }
-
-    img {
-        width: 55vw;
-        height: 55vh;
-        object-fit: contain;
-
-        @media (max-width: 555px) {
-            top: 0;
-            width: 100%;
-        }
-    }
-}
-
-
-.bottomP {
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-    padding: 2rem;
-    padding-bottom: 20vh;
-    padding-right: 5vw;
-    position: relative;
-    color: var(--background-color);
-
-
-    @media (max-width: 555px) {
-        padding: 0;
-        padding-right: 0;
-
-    }
-
-    p {
-        max-width: 40%;
-
-        @media (max-width: 777px) {
-            max-width: 80%;
-        }
-
-        @media (max-width: 555px) {
-            position: relative;
-            right: 0;
-            bottom: 0rem;
-            padding: 1rem 0;
-            max-width: 95%;
-            text-align: left;
-
-        }
-    }
-
-}
-
-.rightPP {
-    width: 100%;
-    display: flex;
-    justify-content: flex-end;
-    padding-right: 5vw;
-
-    @media (max-width: 555px) {
-        padding-right: 0;
-        justify-content: center;
-    }
-}
-
-.rightP {
-    position: relative;
-    padding: 5vh 0;
-    max-width: 40%;
-    text-align: justify;
-    color: var(--title-color);
-
-    @media (max-width: 555px) {
-        width: 100%;
-        max-width: 100%;
-        bottom: 0;
-        right: 0;
-        padding: 1rem;
-    }
-}
-
-.leftImage {
-    width: 100%;
-    position: relative;
-
-    img {
-        width: 45vw;
-        height: 45vh;
-        object-fit: cover;
-
-        @media (max-width: 777px) {
-            width: 40vh;
-        }
-
-        @media (max-width: 555px) {
-            width: 100%;
-            object-fit: contain;
-        }
-    }
-}
-
-.lowerRight {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: center;
-    position: relative;
-    gap: 1rem;
-    height: fit-content;
-    width: 100%;
-
-
-    .column {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        text-align: left;
-        width: 45%;
-        padding-right: 5vw;
-
-        @media (max-width: 555px) {
-            width: 100%;
-            padding-right: 0;
-        }
-    }
-
-    @media (max-width: 555px) {
-        position: relative;
-        right: 0;
-        bottom: 0;
-        padding: 1rem;
-        max-width: 100%;
-
-    }
-
-    p {
-        font-family: var(--paragraph-font);
-        color: var(--title-color);
-        text-align: left;
-        max-width: 88%;
-    }
-}
-
-.bottom {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    position: relative;
-    min-height: 150vh;
-    gap: 2rem;
-    padding: 5vh 0;
-
-    @media (max-width: 555px) {
-        min-height: auto;
-        height: 100%;
-    }
-
-    p {
-        width: 100%;
-        max-width: 40%;
-        text-align: justify;
-        color: var(--title-color);
-
-        @media (max-width: 777px) {
-            max-width: 80%;
-        }
-
-        @media (max-width: 555px) {
-            max-width: 95%;
-            text-align: left;
-        }
-    }
-}
-
-.bottomImg {
-
-    display: flex;
-    width: 100%;
-    justify-content: flex-end;
-    padding-bottom: 15vh;
-
-    @media (max-width: 555px) {
-        padding-bottom: 0;
-    }
-
-    img {
-        width: 70vw;
-        height: 45vh;
-        object-fit: cover;
-
-        @media (max-width: 777px) {
-            width: 40vh;
-        }
-
-        @media (max-width: 555px) {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-    }
-}
-
-.videoImg {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
-    position: relative !important;
-    z-index: 99999999999 !important;
-
-    @media (max-width: 555px) {
-        height: 100%;
-        top: 0;
-    }
+.mainImg {
+    @include full-width;
+    height: 100vh;
 
     video {
-        width: 85vw;
-        height: 85vh;
-        object-fit: contain;
-
-
-        @media (max-width: 555px) {
-            width: 100%;
-            height: 100%;
-        }
-    }
-}
-
-.bottom2 {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 100%;
-    min-height: 100vh;
-    position: relative;
-    padding: 30vh 0;
-
-    @media (max-width: 555px) {
-        min-height: auto;
-        height: 100%;
-        flex-direction: column;
-        justify-content: center;
-        gap: 2rem;
-        padding: 0;
-    }
-}
-
-.veryBottomImg {
-    height: 80vh;
-    position: relative;
-
-    @media (max-width: 555px) {
-        width: 100%;
-        height: 100%;
-    }
-
-    img {
-        width: 70vw;
+        @include full-width;
         height: 100%;
         object-fit: cover;
-
-        @media (max-width: 777px) {
-            width: 75%;
-        }
-
-        @media (max-width: 555px) {
-            width: 100%;
-            object-fit: contain;
-        }
-
     }
 }
 
 .centered {
-    display: flex;
-    flex-direction: column;
+    @include flex-column;
     align-items: center;
     max-width: 50%;
     margin: 0 auto;
     padding: 25vh 0;
-    gap: 1.5rem;
+    gap: $large-gap;
 
-    @media (max-width: 555px) {
+    @include respond-to(medium) {
+        max-width: 70%;
+    }
+
+    @include respond-to(small) {
         max-width: 95%;
-        gap: 1rem;
+        gap: $default-gap;
     }
 
     h2 {
@@ -411,70 +95,411 @@
         font-family: var(--paragraph-font);
         color: var(--subtitle-color);
 
-        @media (max-width: 555px) {
+        @include respond-to(small) {
             max-width: 100%;
         }
     }
 }
 
+.left {
+    @include flex-column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 10vh 0 0 0;
+    gap: 5vh;
+    position: relative;
 
-.list {
+    @include respond-to(small) {
+        height: 100%;
+        gap: $default-gap;
+    }
+
+    p {
+        padding: 10vh 0;
+        max-width: 40%;
+        text-align: justify;
+        color: var(--background-color);
+        font-family: var(--paragraph-font);
+
+        @include respond-to(medium) {
+            max-width: 80%;
+        }
+
+        @include respond-to(small) {
+            max-width: 95%;
+            padding: $default-gap;
+        }
+    }
+}
+
+.farLeft {
+    @include flex-column;
+    @include full-width;
+    align-items: flex-start;
+
+    @include respond-to(small) {
+        padding-top: 10vh;
+    }
+
+    .img {
+        display: flex;
+        justify-content: flex-start;
+        width: 50%;
+        height: 100%;
+
+        @include respond-to(small) {
+            width: 100%;
+        }
+
+        img {
+            @include responsive-image;
+        }
+    }
+}
+
+.lower {
+    @include flex-column;
+    @include center-content;
+    @include full-width;
+    position: relative;
+    min-height: 80vh;
+    gap: 3rem;
+
+    @include respond-to(small) {
+        min-height: unset;
+        height: 100%;
+    }
+}
+
+.smallImg {
+    @include center-content;
+    @include full-width;
+    height: 100%;
+    padding: 10vh 0;
+
+    @include respond-to(small) {
+        height: 100%;
+        padding: 0;
+    }
+
+    img {
+        width: 55vw;
+        height: 55vh;
+        object-fit: contain;
+
+        @include respond-to(small) {
+            @include responsive-image;
+        }
+    }
+}
+
+.bottomP {
     display: flex;
-    flex-direction: column;
+    @include full-width;
+    justify-content: flex-end;
+    padding: 2rem 5vw 20vh 2rem;
+    position: relative;
+    color: var(--background-color);
+
+    @include respond-to(small) {
+        padding: 0;
+    }
+
+    p {
+        max-width: 40%;
+
+        @include respond-to(medium) {
+            max-width: 80%;
+        }
+
+        @include respond-to(small) {
+            position: relative;
+            right: 0;
+            bottom: 0;
+            padding: $default-gap 0;
+            max-width: 95%;
+            text-align: left;
+        }
+    }
+}
+
+.rightPP {
+    @include full-width;
+    display: flex;
+    justify-content: flex-end;
+    padding-right: 5vw;
+
+    @include respond-to(small) {
+        padding-right: 0;
+        justify-content: center;
+    }
+}
+
+.rightP {
+    position: relative;
+    padding: 5vh 0;
+    max-width: 40%;
+    text-align: justify;
+    color: var(--title-color);
+
+    @include respond-to(small) {
+        width: 100%;
+        max-width: 100%;
+        bottom: 0;
+        right: 0;
+        padding: $default-gap;
+    }
+}
+
+.leftImage {
+    @include full-width;
+    position: relative;
+
+    img {
+        width: 45vw;
+        height: 45vh;
+        object-fit: cover;
+
+        @include respond-to(medium) {
+            width: 40vh;
+        }
+
+        @include respond-to(small) {
+            @include responsive-image;
+        }
+    }
+}
+
+.lowerRight {
+    @include flex-column;
     align-items: flex-end;
     justify-content: center;
-    width: 100%;
-    max-width: 100%;
-    gap: 1rem;
+    position: relative;
+    gap: $default-gap;
+    height: fit-content;
+    @include full-width;
 
-    @media (max-width: 555px) {
+    @include respond-to(medium) {
+        align-items: center
+
+    }
+
+    .column {
+        @include flex-column;
+        align-items: flex-start;
+        text-align: left;
+        width: 45%;
+        padding-right: 5vw;
+
+        @include respond-to(medium) {
+            width: 65%;
+
+        }
+        @include respond-to(small) {
+            width: 100%;
+            padding-right: 0;
+        }
+    }
+
+    @include respond-to(small) {
+        position: relative;
+        right: 0;
+        bottom: 0;
+        padding: $default-gap;
+        max-width: 100%;
+    }
+
+    p {
+        font-family: var(--paragraph-font);
+        color: var(--title-color);
+        text-align: left;
+        max-width: 88%;
+    }
+}
+
+.bottom {
+    @include flex-column;
+    @include center-content;
+    @include full-width;
+    position: relative;
+    min-height: 150vh;
+    gap: 2rem;
+    padding: 5vh 0;
+
+    @include respond-to(small) {
+        min-height: auto;
+        height: 100%;
+    }
+
+    p {
+        @include full-width;
+        max-width: 40%;
+        text-align: justify;
+        color: var(--title-color);
+
+        @include respond-to(medium) {
+            max-width: 80%;
+        }
+
+        @include respond-to(small) {
+            max-width: 95%;
+            text-align: left;
+        }
+    }
+}
+
+.bottomImg {
+    display: flex;
+    @include full-width;
+    justify-content: flex-end;
+    padding-bottom: 15vh;
+
+    @include respond-to(small) {
+        padding-bottom: 0;
+    }
+
+    img {
+        width: 70vw;
+        height: 45vh;
+        object-fit: cover;
+
+        @include respond-to(medium) {
+            width: 40vh;
+        }
+
+        @include respond-to(small) {
+            @include responsive-image;
+        }
+    }
+}
+
+.videoImg {
+    @include center-content;
+    @include full-width;
+    height: 100%;
+    position: relative !important;
+    z-index: 99999999999 !important;
+
+    @include respond-to(small) {
+        height: 100%;
+        top: 0;
+    }
+
+    video {
+        width: 85vw;
+        height: 85vh;
+        object-fit: contain;
+
+        @include respond-to(small) {
+            @include full-width;
+            height: 100%;
+        }
+    }
+}
+
+.bottom2 {
+    @include flex-column;
+    justify-content: center;
+    @include full-width;
+    min-height: 100vh;
+    position: relative;
+    padding: 30vh 0;
+
+    @include respond-to(small) {
+        min-height: auto;
+        height: 100%;
+        justify-content: center;
+        gap: 2rem;
+        padding: 0;
+    }
+}
+
+.veryBottomImg {
+    height: 80vh;
+    position: relative;
+
+    @include respond-to(small) {
+        @include full-width;
+        height: 100%;
+    }
+
+    img {
+        width: 70vw;
+        height: 100%;
+        object-fit: cover;
+
+        @include respond-to(medium) {
+            width: 75%;
+        }
+
+        @include respond-to(small) {
+            @include responsive-image;
+        }
+    }
+}
+
+.list {
+    @include flex-column;
+    align-items: flex-end;
+    justify-content: center;
+    @include full-width;
+    max-width: 100%;
+    gap: $default-gap;
+
+    @include respond-to(small) {
         align-items: center;
     }
 
     h2 {
         color: var(--title2-color);
-        width: 100%;
+        @include full-width;
         max-width: 40%;
 
-        @media (max-width: 555px) {
+        @include respond-to(small) {
             max-width: 90%;
             font-size: 1rem;
+        }
+        @include respond-to(medium) {
+            max-width: 70%;
         }
     }
 
     p {
         padding: 0;
-        width: 100%;
-        color: var(--subtitle-color);
-        @media (max-width: 555px) {
-            color: var(--text-color);
-        }
+        @include full-width;
+        color: var(--title-color);
     }
 
     ol {
-        padding-left: 1rem;
-        width: 100%;
+        padding-left: $default-gap;
+        @include full-width;
         max-width: 40%;
-        display: flex;
-        flex-direction: column;
+        @include flex-column;
         gap: 0.5rem;
+        font-family: var(--paragraph-font);
 
-        @media (max-width: 555px) {
+        @include respond-to(medium) {
+            max-width: 80%;
+        }
+
+        @include respond-to(small) {
             max-width: 94%;
         }
 
         li {
-            width: 100%;
+            @include full-width;
             text-align: left;
             color: var(--subtitle-color);
+
+            @include respond-to(medium) {
+                color: var(--title-color);
+            }
+
         }
     }
 }
 
-.dark,
-.darkRight {
-
-
+@mixin dark-shared {
     h2 {
         color: var(--title-color) !important;
         font-size: 1rem;
@@ -489,23 +514,29 @@
     }
 }
 
+.dark {
+    @include dark-shared;
+}
+
 .darkRight {
-    display: flex !important;
-    flex-direction: column !important;
-    width: 100% !important;
+    @include dark-shared;
+    @include flex-column;
+    @include full-width;
     align-items: flex-end !important;
     padding: 0 5rem 10vh 1rem;
-    gap: 1rem;
-    @media (max-width: 555px) {
-        padding: 5vh 0 5vh 0;
+    gap: $default-gap;
+
+    @include respond-to(small) {
+        padding: 5vh 0;
     }
 
     h2,
     p {
         text-align: left !important;
         max-width: 55%;
-        width: 100%;
-        @media (max-width: 555px) {
+        @include full-width;
+
+        @include respond-to(small) {
             max-width: 95%;
         }
     }
@@ -513,7 +544,8 @@
     h2 {
         padding-left: 2rem;
         font-size: 1.1rem;
-        @media (max-width: 555px) {
+
+        @include respond-to(small) {
             padding-left: 0;
         }
     }

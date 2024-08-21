@@ -1,3 +1,9 @@
+$image-width: 50%;
+$text-max-width: 35%;
+$centered-max-width: 50%;
+$vertical-padding: 25vh;
+$horizontal-padding: 5rem;
+
 .about {
     display: flex;
     flex-direction: column;
@@ -7,126 +13,29 @@
     height: 100%;
     position: relative;
     z-index: 99;
-    .upper {
-        height: fit-content;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        padding: 10vh 0 20vh 0;
 
-        @media (max-width: 555px) {
-            padding: 5vh 0;
-        }
-
-
-        p {
-            padding: 20vh 0;
-            max-width: 30%;
-            text-align: justify;
-            color: var(--title2-color);
-            font-size: 16px;
-            font-family: var(--body-font);
-            @media (max-width: 777px) {
-                max-width: 80%;
-            }
-            @media (max-width: 555px) {
-                max-width: 95%;
-            }
-        }
-
-        .rightImg {
-            display: flex;
-            justify-content: flex-end;
-            width: 100%;
-            height: 100%;
-            img {
-                position: relative;
-                right: -5vw;
-                width: 70vw;
-                height: 100vh;
-                object-fit: contain;
-
-
-                @media (max-width: 777px) {
-                    width: 75%;
-                }
-                @media (max-width: 555px) {
-                    width: 100%;
-                    height: 100%;
-                    right: 0;
-                }
-            }
-        }
-    }
+    .upper,
     .lower {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
         width: 100%;
-        position: relative;
-        min-height: 150vh;
+        padding-bottom: $vertical-padding;
+    }
 
-        @media (max-width: 555px) {
-            min-height: auto;
-        }
-        p {
-            position: absolute;
-            right: 3rem;
-            bottom: 5rem;
-            padding: 10vh 0;
-            max-width: 40%;
-            text-align: justify;
-            color: var(--title2-color);
-            font-size: 1.125rem;
-            font-family: var(--paragraph-font);
+    .upper {
+        align-items: flex-end;
+    }
 
-            @media (max-width: 777px) {
-                max-width: 80%;
-            }
+    .lower {
+        align-items: flex-start;
+        min-height: 100vh;
+    }
 
-            @media (max-width: 555px) {
-                position: relative;
-                right: 0;
-                bottom: 0rem;
-                padding: 1rem;
-                max-width: 100%;
-
-            }
-            
-        }
-
-
-        .leftImg {
-            display: flex;
-            justify-content: flex-start;
-            width: 100%;
-            height: 100%;
-            position: relative;
-            img {
-                position: absolute;
-                top: -10vh;
-                left: -5vw;
-                width: 70%;
-                height: 100vh;
-                object-fit: contain;
-
-                @media (max-width: 777px) {
-                    width: 75%;
-                }
-
-                @media (max-width: 555px) {
-                    position: relative;
-                    top: 0;
-                    left: 0;
-                    height: 100%;
-                    width: 100%;
-                }
-
-            }
-
-        }
+    .upper img,
+    .lower img {
+        width: $image-width;
+        height: 100vh;
+        object-fit: contain;
     }
 }
 
@@ -136,9 +45,159 @@
     position: relative;
     background-color: var(--background-color);
     z-index: 1;
+
     video {
         width: 100%;
-        height: 100vh;
+        height: 100%;
         object-fit: cover;
+    }
+}
+
+.rightText {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-end;
+    padding: 0 $horizontal-padding $vertical-padding 1rem;
+    gap: 1rem;
+
+    h2,
+    p {
+        text-align: left;
+        max-width: $text-max-width;
+        width: 100%;
+        color: var(--title2-color);
+    }
+
+    p {
+        font-family: var(--paragraph-font);
+    }
+
+    h2 {
+        padding-left: 2rem;
+        font-size: 1.1rem;
+    }
+}
+
+.centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: $centered-max-width;
+    margin: 0 auto;
+    padding: $vertical-padding 0;
+    gap: 1.5rem;
+
+    h2 {
+        color: var(--title2-color) !important;
+        font-size: 1.5rem !important;
+    }
+
+    p {
+        text-align: left !important;
+        width: 100%;
+        max-width: 60%;
+        font-size: 16px;
+        font-family: var(--paragraph-font);
+        color: var(--subtitle-color);
+    }
+}
+
+@mixin responsive-styles($image-w, $text-w, $centered-w, $v-padding, $h-padding) {
+    .about {
+
+        .upper img,
+        .lower img {
+            width: $image-w;
+        }
+    }
+
+    .rightText {
+        padding: 0 $h-padding $v-padding 1rem;
+
+        h2,
+        p {
+            max-width: $text-w;
+        }
+    }
+
+    .centered {
+        max-width: $centered-w;
+        padding: $v-padding 0;
+    }
+}
+
+@media (max-width: 1200px) {
+    @include responsive-styles(60%, 40%, 55%, $vertical-padding, $horizontal-padding);
+}
+
+@media (max-width: 1024px) {
+    @include responsive-styles(65%, 45%, 60%, 20vh, 4rem);
+
+    .about .lower {
+        min-height: 130vh;
+    }
+}
+
+@media (max-width: 768px) {
+    @include responsive-styles(70%, 55%, 70%, 15vh, 3rem);
+
+    .about .lower {
+        min-height: 110vh;
+    }
+
+    .centered {
+        gap: 1.25rem;
+
+        h2 {
+            font-size: 1.3rem !important;
+        }
+
+        p {
+            max-width: 80%;
+            font-size: 15px;
+        }
+    }
+
+    .rightText h2 {
+        padding-left: 1rem;
+    }
+}
+
+@media (max-width: 555px) {
+    @include responsive-styles(100%, 95%, 95%, 10vh, 0);
+
+    .about {
+
+        .upper,
+        .lower {
+            padding: 5vh 0;
+        }
+
+        .lower {
+            min-height: auto;
+        }
+
+        .upper img,
+        .lower img {
+            height: 100%;
+            position: relative;
+            top: 0;
+            left: 0;
+        }
+    }
+
+    .centered {
+        gap: 1rem;
+        padding: 10vh 0;
+
+        p {
+            max-width: 100%;
+            font-size: 14px;
+        }
+    }
+
+    .rightText h2 {
+        padding-left: 0;
     }
 }
