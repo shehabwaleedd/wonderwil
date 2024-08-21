@@ -1,7 +1,47 @@
 $image-width: 55%;
-$text-max-width: 35%;
+$text-max-width: 65%;
 $centered-max-width: 50%;
 $horizontal-padding: 5rem;
+$default-gap: 1rem;
+$large-gap: 2rem;
+$text-max-width: 65%;
+$text-max-width-small: 90%;
+
+
+$breakpoints: (
+    small: 555px,
+    medium: 777px,
+    large: 992px,
+    xlarge: 1200px
+);
+
+
+
+
+@mixin respond-to($breakpoint) {
+    @if map-has-key($breakpoints, $breakpoint) {
+        @media (max-width: map-get($breakpoints, $breakpoint)) {
+            @content;
+        }
+    }
+
+    @else {
+        @warn "Unknown breakpoint: #{$breakpoint}.";
+    }
+}
+
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+
+@mixin full-width {
+    width: 100%;
+}
+
+
 
 .about {
     display: flex;
@@ -78,30 +118,6 @@ $horizontal-padding: 5rem;
     }
 }
 
-.centered {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    max-width: $centered-max-width;
-    margin: 0 auto;
-    padding: 20vh 0 0 0;
-    gap: 1.5rem;
-
-    h2 {
-        color: var(--title2-color) !important;
-        font-size: 1.5rem !important;
-    }
-
-    p {
-        text-align: left !important;
-        width: 100%;
-        max-width: 60%;
-        font-size: 16px;
-        font-family: var(--body-font);
-        color: var(--subtitle-color);
-    }
-}
-
 .container {
     display: flex;
     flex-direction: column;
@@ -114,6 +130,7 @@ $horizontal-padding: 5rem;
 
 @mixin responsive-styles($image-w, $text-w, $centered-w, $h-padding, $container-gap, $centered-padding) {
     .about {
+
         .upper img,
         .lower img {
             width: $image-w;
@@ -121,6 +138,7 @@ $horizontal-padding: 5rem;
     }
 
     .rightText {
+
         h2,
         p {
             max-width: $text-w;
@@ -178,6 +196,7 @@ $horizontal-padding: 5rem;
     @include responsive-styles(100%, 95%, 95%, 0, 10vh, 10vh);
 
     .about {
+
         .upper,
         .lower {
             padding: 5vh 0;
@@ -207,5 +226,151 @@ $horizontal-padding: 5rem;
 
     .rightText h2 {
         padding-left: 0;
+    }
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: center;
+    width: 100%;
+    max-width: 100%;
+    gap: $large-gap;  
+    padding-right: 10vw;
+
+    h2, p, ol {
+        max-width: 38.5%;
+
+        @include respond-to(medium) {
+            max-width: 70%;
+        }
+
+        @include respond-to(small) {
+            max-width: $text-max-width-small;
+        }
+    }
+
+    h2 {
+        color: var(--title2-color);
+        @include full-width;
+        font-size: 1.3rem !important;
+        padding-left: 5%;
+
+        @include respond-to(small) {
+            font-size: 1rem !important;
+        }
+    }
+
+    p {
+        font-size: 1.5rem !important;
+        padding: 0;
+        @include full-width;
+        color: var(--subtitle-color);
+
+        @include respond-to(small) {
+            font-size: 1.3rem !important;
+        }
+        
+    }
+
+    ol {
+        padding-left: $default-gap;
+        @include full-width;
+        @include flex-column;
+        gap: 0.5rem;
+        font-family: var(--body-font);
+
+        li {
+            @include full-width;
+            text-align: left;
+            color: var(--title-color);
+        }
+    }
+}
+
+.centered {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 50%;
+    margin: 0 auto;
+    gap: $large-gap;
+    text-align: center;
+
+    @include respond-to(medium) {
+        max-width: 70%;
+    }
+
+    @include respond-to(small) {
+        max-width: 95%;
+        gap: $default-gap;
+    }
+
+    h2, p, ol {
+        width: 100%;
+        max-width: $text-max-width;
+        margin: 0 auto;
+
+        @include respond-to(small) {
+            max-width: $text-max-width-small;
+            font-size: 1.3rem !important;
+        }
+        
+    }
+
+    ol {
+        li {
+            width: 100%;
+            text-align: left;
+            font-size: 1.5rem;
+            color: var(--subtitle-color);
+            @include respond-to(small) {
+                font-size: 1.3rem !important;
+            }
+            
+        }
+    }
+
+    h2 {
+        color: var(--title2-color) !important;
+        font-size: 1.3rem !important;
+        text-align: left;
+        padding-left: 5%;
+        @include respond-to(small) {
+            font-size: 1rem !important;
+        }
+        
+    }
+
+    p {
+        font-size: 1.5rem;
+        font-family: var(--body-font);
+        color: var(--subtitle-color);
+        text-align: left;
+        font-weight: 400;
+
+        @include respond-to(small) {
+            font-size: 1.3rem !important;
+        }
+        
+    }
+}
+
+.topP {
+    padding-top: 20vh;
+
+    @include respond-to(small) {
+        padding-top: 10vh;
+    }
+
+}
+
+
+.finalBottom {
+    padding-bottom: 20vh;
+    @include respond-to(small) {
+        padding-bottom: 10vh;
     }
 }
