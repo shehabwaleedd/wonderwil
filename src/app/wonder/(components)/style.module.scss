@@ -32,7 +32,7 @@
     display: flex;
     gap: 0.5rem;
     z-index: 9999999;
-
+    mix-blend-mode: difference;
     @media (max-width: 555px) {
         bottom: 6rem;
     }
@@ -48,6 +48,11 @@
         justify-content: center;
         z-index: 9999999;
         font-size: 1rem;
+        
+
+        svg {
+            fill: #fff;
+        }
 
         &:hover {
             opacity: 0.8;

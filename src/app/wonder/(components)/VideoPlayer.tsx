@@ -1,17 +1,23 @@
 import React, { useRef, useState } from 'react';
-import Image from 'next/image';
 import styles from './style.module.scss';
+import { SlVolume2, SlVolumeOff } from "react-icons/sl";
+import { AiOutlinePause } from "react-icons/ai";
+import { IoPlayOutline } from "react-icons/io5";
+import { LuPlay } from "react-icons/lu";
 
 const CustomVideoPlayer = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isMuted, setIsMuted] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(false);
 
     const togglePlay = () => {
         if (videoRef.current) {
             if (videoRef.current.paused) {
                 videoRef.current.play().catch(e => console.error("Play failed:", e));
+                setIsPlaying(true);
             } else {
                 videoRef.current.pause();
+                setIsPlaying(false);
             }
         }
     };
@@ -36,20 +42,18 @@ const CustomVideoPlayer = () => {
             </video>
             <div className={styles.controls}>
                 <button onClick={togglePlay} aria-label="Play/Pause">
-                    <Image
-                        src="/assets/wonderPage/pause_hires.png"
-                        alt="Play/Pause"
-                        width={24}
-                        height={24}
-                    />
+                    {isPlaying ? (
+                        <AiOutlinePause size={24} />
+                    ) : (
+                        <LuPlay size={24} />
+                    )}
                 </button>
                 <button onClick={toggleMute} aria-label={isMuted ? "Unmute" : "Mute"}>
-                    <Image
-                        src={isMuted ? "/assets/wonderPage/mute_hires.png" : "/assets/wonderPage/medium-volume_hires.png"}
-                        alt={isMuted ? "Unmute" : "Mute"}
-                        width={24}
-                        height={24}
-                    />
+                    {isMuted ? (
+                        <SlVolumeOff size={24} />
+                    ) : (
+                        <SlVolume2 size={24} />
+                    )}
                 </button>
             </div>
         </div>
