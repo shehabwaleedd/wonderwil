@@ -521,7 +521,9 @@ $text-max-width-small: 90%;
         li {
             @include full-width;
             text-align: left;
-            color: var(--title-color);
+            color: var(--subtitle-color);
+            font-size: 1.5rem !important;
+
         }
     }
 }
