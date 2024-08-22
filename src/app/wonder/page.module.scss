@@ -111,7 +111,11 @@ $text-max-width-small: 90%;
         color: var(--title2-color) !important;
         text-align: left;
         padding-left: 5%;
-        
+        font-size: 1.5rem;
+        @include respond-to(small) {
+            max-width: $text-max-width-small;
+            font-size: 1.3rem !important;
+        }
     }
 
     p {
@@ -523,8 +527,12 @@ $text-max-width-small: 90%;
 @mixin dark-shared {
 
     h2 {
-        color: var(--title-color) !important;
-        font-size: 1rem;
+        color: var(--title-color);
+        font-size: 1.3rem;
+        @include respond-to(small) {
+            max-width: $text-max-width-small;
+            font-size: 1rem !important;
+        }
     }
 
     p {
@@ -605,5 +613,11 @@ $text-max-width-small: 90%;
     @include respond-to(small) {
         max-width: $text-max-width-small;
         font-size: 1.3rem !important;
+    }
+}
+
+.differentColor {
+    h2 {
+        color: #9d8e85 !important;
     }
 }
