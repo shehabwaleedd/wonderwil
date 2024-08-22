@@ -270,9 +270,9 @@ $text-max-width-small: 90%;
     position: relative;
 
     img {
-        width: 45vw;
-        height: 45vh;
-        object-fit: cover;
+        width: 50%;
+        height: 100%;
+        object-fit: contain !important;
 
         @include respond-to(medium) {
             width: 40vh;
@@ -431,11 +431,9 @@ $text-max-width-small: 90%;
     @include flex-column;
     justify-content: center;
     @include full-width;
-    min-height: 100vh;
     position: relative;
 
     @include respond-to(small) {
-        min-height: auto;
         height: 100%;
         justify-content: center;
         gap: 2rem;

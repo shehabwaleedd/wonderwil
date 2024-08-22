@@ -102,10 +102,8 @@ const WonderPage = () => {
                 <section className={styles.smallImg}>
                     <Image src="/assets/wonderPage/img2.png" alt="Wonder Page Image" width={1920} height={1080} />
                 </section>
-                <section className={styles.lower}>
-                    <div className={styles.leftImage}>
-                        <Image src="/assets/wonderPage/img3.png" alt="Wonder Page Image" width={1920} height={1080} />
-                    </div>
+                <section className={styles.leftImage}>
+                    <Image src="/assets/wonderPage/img3.png" alt="Wonder Page Image" width={1920} height={1080} />
                 </section>
                 <div className={`${styles.list} ${styles.dynamic}`}>
                     <h2 style={{ color: "var(--title-color)" }}>The living canvas</h2>
