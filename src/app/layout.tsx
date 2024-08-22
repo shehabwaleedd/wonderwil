@@ -7,6 +7,7 @@ import SmoothScroller from '@/animations/SmoothScrolling';
 import { AccessProvider } from '@/context/AccessContext';
 import { Toaster } from 'sonner';
 import Background from "@/components/background";
+import Script from 'next/script';
 
 const youth = localFont({
   src: '../../public/fonts/Futura.woff2',
@@ -70,12 +71,33 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: 'https://wonderwil.com',
-  }
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning className={`${youth.variable} ${satoshiVariable.variable}`}>
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "http://schema.org",
+              "@type": "WebPage",
+              "mainEntity": {
+                "@type": "Organization",
+                "name": "Wonderwil",
+                "url": "https://wonderwil.com"
+              },
+              "author": {
+                "@type": "Organization",
+                "name": "Cairo Studio",
+                "url": "https://cairo-studio.com"
+              }
+            }),
+          }}
+        />
+      </head>
       <body>
         <AccessProvider>
           <Navbar />
