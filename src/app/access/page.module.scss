@@ -7,10 +7,10 @@
     height: 100vh;
     position: relative;
     z-index: 99999999999;
-    box-shadow: inset 10px 10px 20px rgba(0, 0, 0, 0.3),   /* Top-left */
-    inset -10px -10px 20px rgba(0, 0, 0, 0.3),  /* Bottom-right */
-    inset 10px -10px 20px rgba(0, 0, 0, 0.3),   /* Bottom-left */
-    inset -10px 10px 20px rgba(0, 0, 0, 0.3);   /* Top-right */
+    box-shadow: inset 10px 10px 20px rgba(0, 0, 0, 0.3),
+                inset -10px -10px 20px rgba(0, 0, 0, 0.3),
+                inset 10px -10px 20px rgba(0, 0, 0, 0.3),
+                inset -10px 10px 20px rgba(0, 0, 0, 0.3);
     background-color: #abacac;
     transition: var(--animation-primary);
 
@@ -22,10 +22,10 @@
         width: 100%;
         height: 100%;
         backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px); /* For Safari support */
-        z-index: -1; /* Keeps it behind the content */
+        -webkit-backdrop-filter: blur(12px);
+        z-index: -1;
     }
-    d
+
     img {
         position: relative;
         z-index: 9999;
@@ -40,29 +40,45 @@
         justify-content: center;
         gap: 1rem;
         transition: var(--animation-primary);
+        width: 100%;
+        max-width: 300px; // Adjust this value as needed
     }
 
     input {
         border-radius: 2rem;
-        width: fit-content;
-        height: fit-content;
+
         padding: 1rem;
         background-color: #c7c7c7;
         border: var(--border);
         transition: var(--animation-primary);
-        box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.035),   /* Top-left */
-        inset -10px -10px 10px rgba(0, 0, 0, 0.035),  /* Bottom-right */
-        inset 10px -10px 10px rgba(0, 0, 0, 0.035),   /* Bottom-left */
-        inset -10px 10px 10px rgba(0, 0, 0, 0.035);   /* Top-right */
+        box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.035),
+                    inset -10px -10px 10px rgba(0, 0, 0, 0.035),
+                    inset 10px -10px 10px rgba(0, 0, 0, 0.035),
+                    inset -10px 10px 10px rgba(0, 0, 0, 0.035);
+        text-align: center; // Center the text inside the input
+        color: #fff; 
         &:focus {
             outline: 1px solid #929292;
             transition: var(--animation-primary);
+        }
+
+        &::placeholder {
+            text-align: center;
+            color: #6f6f6f; 
+            opacity: 1; // Ensure full opacity in all browsers
+            font-size: 0.9rem;
         }
     }
 
     button {
         background-color: transparent;
         transition: var(--animation-primary);
+        width: 100%; 
+        color: #6f6f6f; 
+        cursor: pointer;
+        &:hover {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
     }
 }
 
@@ -72,8 +88,11 @@
     align-items: center;
     justify-content: center;
     height: 100%;
-    max-width: 50%;
+    width: 100%;
+    max-width: 50%; 
     margin: 0 auto;
     gap: 2rem;
     transition: var(--animation-primary);
+    padding: 2rem;
+    box-sizing: border-box;
 }

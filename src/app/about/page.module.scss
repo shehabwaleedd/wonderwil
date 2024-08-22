@@ -266,7 +266,7 @@ $breakpoints: (
         font-size: 1.5rem !important;
         padding: 0;
         @include full-width;
-        color: var(--subtitle-color);
+        color: #a0d3d5;
 
         @include respond-to(small) {
             font-size: 1.3rem !important;
@@ -335,7 +335,7 @@ $breakpoints: (
 
     h2 {
         color: var(--title2-color) !important;
-        font-size: 1.3rem !important;
+        font-size: 1.5rem !important;
         text-align: left;
         padding-left: 5%;
         @include respond-to(small) {
@@ -347,7 +347,7 @@ $breakpoints: (
     p {
         font-size: 1.5rem;
         font-family: var(--body-font);
-        color: var(--subtitle-color);
+        color: #9ca1b7;
         text-align: left;
         font-weight: 400;
 
@@ -360,7 +360,6 @@ $breakpoints: (
 
 .topP {
     padding-top: 20vh;
-
     @include respond-to(small) {
         padding-top: 10vh;
     }

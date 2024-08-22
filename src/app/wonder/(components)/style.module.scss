@@ -32,6 +32,7 @@
     display: flex;
     gap: 0.5rem;
     z-index: 9999999;
+    opacity: 1;
     mix-blend-mode: difference;
     @media (max-width: 555px) {
         bottom: 6rem;
@@ -51,17 +52,13 @@
         
 
         svg {
+            width: 2.5rem;
+            height: 2.5rem;
             fill: #fff;
         }
 
         &:hover {
             opacity: 0.8;
-        }
-
-        img {
-            width: 2rem;
-            height: 2rem;
-            object-fit: contain;
         }
     }
 }

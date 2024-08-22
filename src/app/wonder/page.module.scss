@@ -90,11 +90,7 @@ $text-max-width-small: 90%;
         width: 100%;
         max-width: $text-max-width;
         margin: 0 auto;
-
-        @include respond-to(small) {
-            max-width: $text-max-width-small;
-            font-size: 1.3rem !important;
-        }
+ 
         
     }
 
@@ -113,26 +109,21 @@ $text-max-width-small: 90%;
 
     h2 {
         color: var(--title2-color) !important;
-        font-size: 1.3rem !important;
         text-align: left;
         padding-left: 5%;
-        @include respond-to(small) {
-            font-size: 1rem !important;
-        }
         
     }
 
     p {
-        font-size: 1.5rem;
         font-family: var(--body-font);
-        color: var(--subtitle-color);
+        color: #ad8e8c;
         text-align: left;
         font-weight: 400;
-
+        font-size: 1.5rem;
         @include respond-to(small) {
+            max-width: $text-max-width-small;
             font-size: 1.3rem !important;
         }
-        
     }
 }
 
@@ -289,12 +280,12 @@ $text-max-width-small: 90%;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 35vh;
+    gap: 20vh;
     width: 100%;
     height: 100%;
 
     @include respond-to(medium) {
-        gap: 20vh;
+        gap: 15vh;
     }
     @include respond-to(small) {
         gap: 10vh;
@@ -504,7 +495,7 @@ $text-max-width-small: 90%;
         font-size: 1.5rem !important;
         padding: 0;
         @include full-width;
-        color: var(--subtitle-color);
+        color: #c5a19e;
 
         @include respond-to(small) {
             font-size: 1.3rem !important;
@@ -522,7 +513,7 @@ $text-max-width-small: 90%;
         li {
             @include full-width;
             text-align: left;
-            color: var(--subtitle-color);
+            color: #c5a19e;
             font-size: 1.5rem !important;
 
         }
@@ -572,10 +563,10 @@ $text-max-width-small: 90%;
 }
 
 .topP {
-    padding-top: 35vh;
+    padding-top: 20vh;
 
     @include respond-to(medium) {
-        padding-top: 20vh;
+        padding-top: 15vh;
     }
 
     @include respond-to(small) {
@@ -585,10 +576,10 @@ $text-max-width-small: 90%;
 }
 
 .finalBottom {
-    padding-bottom: 35vh;
+    padding-bottom: 20vh;
 
     @include respond-to(medium) {
-        padding-bottom: 20vh;
+        padding-bottom: 15vh;
     }
     
     @include respond-to(small) {
@@ -605,5 +596,14 @@ $text-max-width-small: 90%;
         p {
             color: var(--subtitle-color) !important;
         }
+    }
+}
+
+
+.firstH1 {
+    font-size: 1.5rem;
+    @include respond-to(small) {
+        max-width: $text-max-width-small;
+        font-size: 1.3rem !important;
     }
 }

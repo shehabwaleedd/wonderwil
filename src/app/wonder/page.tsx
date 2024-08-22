@@ -77,8 +77,8 @@ const WonderPage = () => {
             </section>
             <div ref={contentRef} className={styles.container}>
                 <section className={`${styles.centered} ${styles.topP}`}>
-                    <h2>Wonder With Us</h2>
-                    <p className={styles.start}>By accessing this page, you&apos;ve unveiled our most cherished project - one that embodies the true DNA of Wonderful.</p>
+                    <h2 className={styles.firstH1}>Wonder With Us</h2>
+                    <p>By accessing this page, you&apos;ve unveiled our most cherished project - one that embodies the true DNA of Wonderful.</p>
                     <p>Our creative studio is not only a specialist consultant, trusted to create brand strategy, branding, content, and production for many of the most high-profile projects in the world.</p>
                     <p>We are also committed to the advocacy, development, and advancement of community-powered public spaces for social good.</p>
                     <p>And we need you to achieve this together.</p>

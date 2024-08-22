@@ -1,14 +1,13 @@
 import React, { useRef, useState } from 'react';
 import styles from './style.module.scss';
 import { SlVolume2, SlVolumeOff } from "react-icons/sl";
-import { AiOutlinePause } from "react-icons/ai";
-import { IoPlayOutline } from "react-icons/io5";
-import { LuPlay } from "react-icons/lu";
+import { LiaPauseSolid } from "react-icons/lia";
+import { SlControlPlay } from "react-icons/sl";
 
 const CustomVideoPlayer = () => {
     const videoRef = useRef<HTMLVideoElement>(null);
     const [isMuted, setIsMuted] = useState(false);
-    const [isPlaying, setIsPlaying] = useState(false);
+    const [isPlaying, setIsPlaying] = useState(true);
 
     const togglePlay = () => {
         if (videoRef.current) {
@@ -31,21 +30,16 @@ const CustomVideoPlayer = () => {
 
     return (
         <div className={styles.videoContainer}>
-            <video
-                ref={videoRef}
-                loop
-                playsInline
-                className={styles.video}
-            >
+            <video ref={videoRef} loop playsInline className={styles.video} autoPlay muted>
                 <source src="/video.mp4" type="video/mp4" />
                 Your browser does not support the video tag.
             </video>
             <div className={styles.controls}>
                 <button onClick={togglePlay} aria-label="Play/Pause">
                     {isPlaying ? (
-                        <AiOutlinePause size={24} />
+                        <LiaPauseSolid size={24} />
                     ) : (
-                        <LuPlay size={24} />
+                        <SlControlPlay size={24} />
                     )}
                 </button>
                 <button onClick={toggleMute} aria-label={isMuted ? "Unmute" : "Mute"}>
