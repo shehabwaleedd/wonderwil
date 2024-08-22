@@ -76,6 +76,7 @@
         width: 100%; 
         color: #6f6f6f; 
         cursor: pointer;
+        text-transform: lowercase;
         &:hover {
             background-color: rgba(0, 0, 0, 0.1);
         }
