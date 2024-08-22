@@ -7,8 +7,25 @@
     height: 100vh;
     position: relative;
     z-index: 99999999999;
+    box-shadow: inset 10px 10px 20px rgba(0, 0, 0, 0.3),   /* Top-left */
+    inset -10px -10px 20px rgba(0, 0, 0, 0.3),  /* Bottom-right */
+    inset 10px -10px 20px rgba(0, 0, 0, 0.3),   /* Bottom-left */
+    inset -10px 10px 20px rgba(0, 0, 0, 0.3);   /* Top-right */
     background-color: #abacac;
     transition: var(--animation-primary);
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px); /* For Safari support */
+        z-index: -1; /* Keeps it behind the content */
+    }
+    d
     img {
         position: relative;
         z-index: 9999;
