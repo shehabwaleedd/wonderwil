@@ -50,7 +50,10 @@
         background-color: #c7c7c7;
         border: var(--border);
         transition: var(--animation-primary);
-
+        box-shadow: inset 10px 10px 10px rgba(0, 0, 0, 0.035),   /* Top-left */
+        inset -10px -10px 10px rgba(0, 0, 0, 0.035),  /* Bottom-right */
+        inset 10px -10px 10px rgba(0, 0, 0, 0.035),   /* Bottom-left */
+        inset -10px 10px 10px rgba(0, 0, 0, 0.035);   /* Top-right */
         &:focus {
             outline: 1px solid #929292;
             transition: var(--animation-primary);
