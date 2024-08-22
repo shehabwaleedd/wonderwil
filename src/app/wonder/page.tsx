@@ -105,8 +105,8 @@ const WonderPage = () => {
                 <section className={styles.leftImage}>
                     <Image src="/assets/wonderPage/img3.png" alt="Wonder Page Image" width={1920} height={1080} />
                 </section>
-                <div className={`${styles.list} ${styles.dynamic}`}>
-                    <h2 style={{ color: "#9d8e85" }}>The living canvas</h2>
+                <div className={`${styles.list} ${styles.dynamic} ${styles.differentColor}`}>
+                    <h2 style={{ color: "var(--title-color" }}>The living canvas</h2>
                     <p>Intimate, thought-provoking, visceral and poetic storytelling is the groundwork of our content ethos. A masterfully crafted visual narrative focuses on the relationship of public space to people.</p>
                     <p>Through video (a short film about the public space directed by a cinema auteur), audio (bottles of ambient sounds that act as geographical artifacts), and archival footage, we aim to illustrate the power of public spaces as platforms for community development, creating a sense of authentic human conversation among the democratic places of the world.</p>
                     <p>Supplementary visuals range from historical imagery, interactions between spaces from the past and present, and data visualization that can move us to re-dream and promote the future of our cities and environment.</p>
@@ -117,7 +117,7 @@ const WonderPage = () => {
                     </div>
                 </section>
                 <div className={`${styles.centered} ${styles.differentColor}`}>
-                    <h2 >The pulse of place</h2>
+                    <h2 style={{ color: "var(--title-color" }}>The pulse of place</h2>
                     <p>A new paradigm of interaction for the discovery and exploration of the public realm will take shape through the development of an immersive map</p>
                     <p>The Wonder Map will serve as guiding compass, allowing us to navigate partnering public spaces and granting access to its free-standing library of vérité documentaries and a constantly refreshed selection of special features.</p>
                     <p>The Wonder Map is designed to stimulate the ongoing dialogue about the vital life force of cities, nature, beauty and history.</p>

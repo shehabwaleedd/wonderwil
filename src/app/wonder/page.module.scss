@@ -78,20 +78,22 @@ $text-max-width-small: 90%;
     text-align: center;
 
     @include respond-to(medium) {
-        max-width: 70%;
+        max-width: 95%;
     }
 
     @include respond-to(small) {
-        max-width: 95%;
+
         gap: $default-gap;
     }
 
-    h2, p, ol {
+    h2,
+    p,
+    ol {
         width: 100%;
         max-width: $text-max-width;
         margin: 0 auto;
- 
-        
+
+
     }
 
     ol {
@@ -100,10 +102,11 @@ $text-max-width-small: 90%;
             text-align: left;
             font-size: 1.5rem;
             color: var(--subtitle-color);
+
             @include respond-to(small) {
                 font-size: 1.3rem !important;
             }
-            
+
         }
     }
 
@@ -111,10 +114,11 @@ $text-max-width-small: 90%;
         color: var(--title2-color) !important;
         text-align: left;
         padding-left: 5%;
-        font-size: 1.5rem;
+        font-size: 1.3rem;
+
         @include respond-to(small) {
             max-width: $text-max-width-small;
-            font-size: 1.3rem !important;
+            font-size: 1rem !important;
         }
     }
 
@@ -124,6 +128,7 @@ $text-max-width-small: 90%;
         text-align: left;
         font-weight: 400;
         font-size: 1.5rem;
+
         @include respond-to(small) {
             max-width: $text-max-width-small;
             font-size: 1.3rem !important;
@@ -291,6 +296,7 @@ $text-max-width-small: 90%;
     @include respond-to(medium) {
         gap: 15vh;
     }
+
     @include respond-to(small) {
         gap: 10vh;
     }
@@ -469,10 +475,12 @@ $text-max-width-small: 90%;
     justify-content: center;
     @include full-width;
     max-width: 100%;
-    gap: $large-gap;  
+    gap: $large-gap;
     padding-right: 10vw;
 
-    h2, p, ol {
+    h2,
+    p,
+    ol {
         max-width: 38.5%;
 
         @include respond-to(medium) {
@@ -504,7 +512,7 @@ $text-max-width-small: 90%;
         @include respond-to(small) {
             font-size: 1.3rem !important;
         }
-        
+
     }
 
     ol {
@@ -529,6 +537,7 @@ $text-max-width-small: 90%;
     h2 {
         color: var(--title-color);
         font-size: 1.3rem;
+
         @include respond-to(small) {
             max-width: $text-max-width-small;
             font-size: 1rem !important;
@@ -554,13 +563,14 @@ $text-max-width-small: 90%;
     max-width: 100%;
     align-self: flex-end;
     align-content: flex-end;
-    
+
 
     @include respond-to(small) {
         padding: 5vh 0;
     }
 
-    h2, p {
+    h2,
+    p {
         text-align: left !important;
         // max-width: $text-max-width;
     }
@@ -581,6 +591,13 @@ $text-max-width-small: 90%;
         padding-top: 10vh;
     }
 
+    h2 {
+        font-size: 1.5rem;
+        @include respond-to(small) {
+            font-size: 1.3rem !important;
+        }
+    }
+
 }
 
 .finalBottom {
@@ -589,7 +606,7 @@ $text-max-width-small: 90%;
     @include respond-to(medium) {
         padding-bottom: 15vh;
     }
-    
+
     @include respond-to(small) {
         padding-bottom: 10vh;
     }
@@ -610,6 +627,7 @@ $text-max-width-small: 90%;
 
 .firstH1 {
     font-size: 1.5rem;
+
     @include respond-to(small) {
         max-width: $text-max-width-small;
         font-size: 1.3rem !important;
@@ -618,6 +636,14 @@ $text-max-width-small: 90%;
 
 .differentColor {
     h2 {
+        color: var(--title-color) !important;
+
+        @include respond-to(small) {
+            font-size: 1rem !important;
+        }
+    }
+
+    p {
         color: #9d8e85 !important;
     }
 }
