@@ -30,7 +30,7 @@ const Background = () => {
 
 
     useEffect(() => {
-        setShowBackground(pathname === '/' || pathname === '/expertise');
+        setShowBackground(pathname === '/');
     }, [pathname]);
 
 
